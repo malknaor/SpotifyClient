@@ -1,25 +1,18 @@
-.navbar {
-    display: flex;
-    flex-direction: column;
-}
-
 /******* main navigation *******/
 .main-navbar {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    align-self: stretch;
     background-color: black;
-    width: 300px;
+    width: 25%;
+    height: 100%;
 }
 
 .main-navbar .header {
+    flex: 0.5;
     display: flex;
+    align-self: flex-start;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -39,9 +32,11 @@
 }
 
 .main-navbar .nav-list {
-    flex: 1;
+    flex: 4;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
+    padding: 0 20px;
     list-style: none;
 }
 
@@ -76,6 +71,33 @@
 }
 
 .main-navbar .footer {
+    flex: 0.3;
+    display: flex;
+    border-top: 1px solid rgb(97, 97, 97);;
+    margin: 0 10px;
+    width: 80%;
+}
+
+.footer .nav-link {
+    flex: 1;
     display: flex;
     align-self: center;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.footer .user-pic {
+    flex: 1;
+    border-radius: 50%; 
+    max-height: 40px;
+    max-width: 40px;
+    margin-right: 10px;
+}
+
+.footer .user-name {
+    flex: 1;
+    font-size: 90%;
 }

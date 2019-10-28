@@ -1,0 +1,6 @@
+.user-page {
+    flex: 1;
+    display: flex;
+    font-size: 400%;
+    width: 75%;
+}

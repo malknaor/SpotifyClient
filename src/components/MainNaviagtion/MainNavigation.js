@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import './Navigation.css';
+import '../../css/MainNavigation.css';
 
 const MainNavigation = () => {
     return (
@@ -11,27 +12,29 @@ const MainNavigation = () => {
                 </div>
                 <ul className="nav-list">
                     <li className="list-item">
-                        <a className="nav-link" href="#">
+                        <Link className="nav-link" to="/">
                             <img className="home-icon" src={require('../../resources/home.svg')} alt="home-icon"></img>
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li className="list-item">
-                        <a className="nav-link" href="#">
+                        <Link className="nav-link" to="/search">
                             <img className="search-icon" src={require('../../resources/search.svg')} alt="search-icon"></img>
                             Search
-                        </a>
+                        </Link>
                     </li>
                     <li className="list-item">
-                        <a className="nav-link" href="#">
+                        <Link className="nav-link" to="/mylibrary">
                             <img className="library-icon" src={require('../../resources/library.svg')} alt="library-icon"></img>
                             My Library
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <div className="footer">
-                    <img alt="user photo"></img>
-                    User Name
+                    <Link className="nav-link" to="/user">
+                        <img className="user-pic" src={require('../../resources/spotify.svg')} alt="spotify-logo"></img>
+                        <p className="user-name">User Name</p>
+                    </Link>
                 </div>
         </div>
     );
