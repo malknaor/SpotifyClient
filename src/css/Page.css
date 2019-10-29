@@ -1,0 +1,5 @@
+.page {
+    flex: 5;
+    display: flex;
+    justify-content: flex-start;
+}

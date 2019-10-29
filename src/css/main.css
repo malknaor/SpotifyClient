@@ -5,33 +5,37 @@
 }
 
 body {
-    display: flex;
-    height: 100vh;
-    width: auto;
-    color: white;
-    font-family: 'Lato', 'Ariel', sans-serif;
-    font-weight: 300;
-    font-size: 20px; 
-    background-color: rgb(58, 57, 57);
-    background-image: linear-gradient(
-        210deg,
-        rgba(116, 48, 39, 0.5),
-        #141313 90%
-      );
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-family: 'Lato', 'Ariel', sans-serif;
+  font-weight: 300;
+  font-size: 20px; 
+  background-color: rgb(58, 57, 57);
+  background-image: linear-gradient(
+    210deg,
+    rgba(116, 48, 39, 0.5),
+    #141313 70%
+    );
+  background-repeat: no-repeat;
+}
+  
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 .app-container {
-  box-sizing: border-box;
-
   flex: 1;
   display: flex;
   align-items: stretch;
   height: 100%;
-  width: 90%;
+  width: auto;
 }
 
 .feed {
-  flex: 1;
+  flex: 5;
   display: flex;
   height: 100%;
   width: auto;

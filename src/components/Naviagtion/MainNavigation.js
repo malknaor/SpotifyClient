@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../css/MainNavigation.css';
+import '../../css/Navigation.css';
 
-const MainNavigation = () => {
+const MainNavigation = props => {
     return (
         <div className="main-navbar">
                 <div className="header">
@@ -32,8 +32,8 @@ const MainNavigation = () => {
                 </ul>
                 <div className="footer">
                     <Link className="nav-link" to="/user">
-                        <img className="user-pic" src={require('../../resources/spotify.svg')} alt="spotify-logo"></img>
-                        <p className="user-name">User Name</p>
+                        <img className="user-pic" src={props.user.images[0].url} alt="spotify-logo"></img>
+                        <p className="user-name">{props.user.display_name}</p>
                     </Link>
                 </div>
         </div>

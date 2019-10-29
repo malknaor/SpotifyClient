@@ -1,0 +1,66 @@
+.list-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.list-title {
+    flex: 1;
+    padding: 20px;
+}
+
+.music-list {
+    flex: 1;
+    display: flex;
+    text-decoration: none;
+    justify-content: flex-start;
+}
+
+.music-list-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.item-image-link,
+.item-name-link {
+    flex: 1;
+    display: flex;
+    color: white;
+    text-decoration: none;
+}
+
+.item-image-link:hover .album-cover {
+    opacity: 0.3;
+}
+
+.item-image-link:hover .album-middle {
+    opacity: 1;
+}
+
+.album-cover {
+    max-height: 250px;
+    max-width: 250px;
+    opacity: 1;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: 0.5s ease;
+}
+
+.album-middle {
+    opacity: 0;
+    position: absolute;
+    max-height: 250px;
+    max-width: 250px;
+    position: relative;
+    transition: 0.5s ease;
+}
+
+.track-name {
+    flex: 1;
+    font-size: 90%;
+    padding: 10px;
+}
