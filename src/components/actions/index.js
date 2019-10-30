@@ -3,11 +3,14 @@ import ls from 'local-storage';
 import { ACCESS_TOKEN } from '../../constants/StorageKeys';
 import { 
     FETCH_USER, 
-    FETCH_RECENTLY_PLAYED 
+    FETCH_RECENTLY_PLAYED,
+    FETCH_USER_TOP_TRACKS,
+    FETCH_USER_TOP_ARTISTS
 } from '../../constants/ActionTypes';
 import { 
     USER_ACCOUNT,
-    RECENTLY_PLAYED 
+    RECENTLY_PLAYED,
+    USER_TOP_X 
 } from '../../constants/Routes';
 import spotify from '../../api/spotify';
 
@@ -31,12 +34,26 @@ export const fetchRecentlyPlayed = () => async dispatch => {
 
 export const fetchUserTopX = type => async dispatch => {
     const { headers } = requestBody;
-    const response = await spotify.get(RECENTLY_PLAYED, {
-        body: {
-            type: type
-        },
-        headers: headers
-    });
-
-    dispatch({ type: FETCH_RECENTLY_PLAYED, payload: response.data });
+    
+    if (type === 'tracks') {
+        const response = await spotify.get(USER_TOP_X, {
+            headers: { 
+                ...headers,
+                type: type
+            }
+        });
+    
+        dispatch({ type: FETCH_USER_TOP_TRACKS, payload: response.data });
+    } 
+    
+    if (type === 'artists') {
+        const response = await spotify.get(USER_TOP_X, {
+            headers: { 
+                ...headers,
+                type: type
+            }
+        });
+    
+        dispatch({ type: FETCH_USER_TOP_ARTISTS, payload: response.data });
+    }
 };

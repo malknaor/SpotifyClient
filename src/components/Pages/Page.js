@@ -1,11 +1,10 @@
 import React from 'react';
 
-import SubNavigation from '../Naviagtion/SubNavigation';
+import '../../css/Page.css';
 
 const Page = props => {
     return (
         <div className="page">
-            <SubNavigation />
             {props.children}
         </div>
     );

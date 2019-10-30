@@ -1,25 +1,86 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Page from './Page';
+import SubNavigation from '../Naviagtion/SubNavigation';
 import MusicList from '../MusicList/MusicList';
-import { fetchRecentlyPlayed } from '../actions';
+import { 
+    fetchRecentlyPlayed,
+    fetchUserTopX
+} from '../actions';
 import '../../css/HomePage.css';
 
 class HomePage extends React.Component {
     componentDidMount(){
         this.props.fetchRecentlyPlayed();
+        this.props.fetchUserTopX('tracks');
+        this.props.fetchUserTopX('artists');
     }
 
-    renderMusicLists() {
-        if (this.props.recentlyPlayed) {
-            console.log(this.props.recentlyPlayed);
-
-            return(
-                <MusicList title="Recently Played" items={this.props.recentlyPlayed.items} />
+    renderRecentlyPlayed() {
+        if (this.props.recentlyPlayed.items !== undefined) {
+            return (
+                <MusicList title="Recently Played">
+                    {this.props.recentlyPlayed.items.slice(0, 5).map((current, index) => {
+                        return (
+                            <li className="music-list-item" key={index}>
+                                <Link className="item-image-link" to="/">
+                                    <img className="album-cover" src={current.track.album.images[0].url} alt="album cover"></img>
+                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                </Link>
+                                <Link className="item-name-link" to={`/${current.track.name}`}>
+                                    <p className="track-name">{current.track.name}</p>  
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </MusicList>
             );
-        } else {
-            return <div><h3>Loading...</h3></div>
+        }
+    }
+
+    renderTopTracks() {
+        if (this.props.topTracks.items !== undefined) {
+            return (
+                <MusicList title="Top Tracks">
+                    {this.props.topTracks.items.slice(0, 5).map((current, index) => {
+                        return (
+                            <li className="music-list-item" key={index}>
+                                <Link className="item-image-link" to="/">
+                                    <img className="album-cover" src={current.album.images[0].url} alt="album cover"></img>
+                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                </Link>
+                                <Link className="item-name-link" to={`/${current.name}`}>
+                                    <p className="track-name">{current.name}</p>  
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </MusicList>
+            );
+        }
+    }
+
+    renderTopArtists() {
+        if (this.props.topArtists.items !== undefined) {
+            return (
+                <MusicList title="Top Artists">
+                    {this.props.topArtists.items.slice(0, 5).map((current, index) => {
+                        return (
+                            <li className="music-list-item" key={index}>
+                                <Link className="item-image-link" to="/">
+                                    <img className="album-cover" src={current.images[0].url} alt="album cover"></img>
+                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                </Link>
+                                <Link className="item-name-link" to={`/${current.name}`}>
+                                    <p className="track-name">{current.name}</p>  
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </MusicList>
+            );
         }
     }
 
@@ -27,7 +88,10 @@ class HomePage extends React.Component {
         return (
             <div className="home-page">
                 <Page>
-                    {this.renderMusicLists()}
+                    <SubNavigation />
+                    {this.renderRecentlyPlayed()}
+                    {this.renderTopTracks()}
+                    {this.renderTopArtists()}
                 </Page>
             </div>
         );
@@ -35,11 +99,18 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const recentlyPlayed = Array.isArray(state.recentlyPlayed)? null : state.recentlyPlayed;
-    
+    // const recentlyPlayed = Array.isArray(state.recentlyPlayed)? null : state.recentlyPlayed;
+    // const topTracks = Array.isArray(state.topTracks)? null : state.userTopX.topTracks;
+    // const topArtists = Array.isArray(state.topArtists)? null : state.userTopX.topArtists;
+
     return { 
-        recentlyPlayed: recentlyPlayed
+        recentlyPlayed: state.recentlyPlayed,
+        topTracks: state.userTopX.topTracks,
+        topArtists: state.userTopX.topArtists
     };
 };
 
-export default connect(mapStateToProps, { fetchRecentlyPlayed } )(HomePage);
+export default connect(mapStateToProps, { 
+    fetchRecentlyPlayed,
+    fetchUserTopX
+})(HomePage);

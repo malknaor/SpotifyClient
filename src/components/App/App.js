@@ -21,8 +21,6 @@ import '../../css/App.css';
 
 class App extends React.Component {
     componentDidUpdate() {
-        console.log(this.props);
-
         this.renderPage();
     }
 
@@ -44,7 +42,7 @@ class App extends React.Component {
     }
 
     renderPage() {
-        if (this.props.user) {
+        if (Object.keys(this.props.user).length > 0) {
             return (
                 <Router>
                     <MainNavigation user={this.props.user}/>
@@ -73,9 +71,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const user = Array.isArray(state.user)? null : state.user;
-
-    return { user: user };
+    return { user: state.user }
 };
 
 export default connect(mapStateToProps, { fetchUser })(App);

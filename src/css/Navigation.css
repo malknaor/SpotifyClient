@@ -105,7 +105,7 @@
 .sub-navbar {
     flex: 1;
     display: flex;
-    height: 20%;
+    height: 10%;
 }
 
 .sub-navbar .nav-list {
