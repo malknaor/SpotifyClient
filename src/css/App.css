@@ -1,0 +1,14 @@
+.app-container {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    width: auto;
+}
+
+.feed {
+    flex: 5;
+    display: flex;
+    height: 100%;
+    width: auto;
+}

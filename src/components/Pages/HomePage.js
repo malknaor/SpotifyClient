@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SubNavigation from '../Naviagtion/SubNavigation';
-import Page from '../Pages/Page';
+import Page from './Page';
 import MusicList from '../MusicList/MusicList';
 import { fetchRecentlyPlayed } from '../actions';
 import '../../css/HomePage.css';
@@ -28,7 +27,6 @@ class HomePage extends React.Component {
         return (
             <div className="home-page">
                 <Page>
-                    <SubNavigation />
                     {this.renderMusicLists()}
                 </Page>
             </div>

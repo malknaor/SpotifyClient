@@ -3,21 +3,21 @@ import ls from 'local-storage';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { fetchUser } from './actions/index';
-import MainNavigation from './Naviagtion/MainNavigation';
-import HomePage from './HomePage/HomePage';
-import SearchPage from './SearchPage/SearchPage';
-import UserLibrary from './UserLibrary/UserLibrary';
-import UserPage from './UserPage/UserPage';
-import LoginPage from './LoginPage/LoginPage';
+import { fetchUser } from '../actions/index';
+import MainNavigation from '../Naviagtion/MainNavigation';
+import HomePage from '../Pages/HomePage';
+import SearchPage from '../Pages/SearchPage';
+import UserLibraryPage from '../Pages/UserLibraryPage';
+import UserPage from '../Pages/UserPage';
+import LoginPage from '../Pages/LoginPage';
 import { 
     ACCESS_TOKEN, 
     TOKEN_TYPE,
     SCOPE,
     EXPIRES_IN,
     REFRESH_TOKEN
-} from '../constants/StorageKeys';
-import '../css/main.css';
+} from '../../constants/StorageKeys';
+import '../css/App.css';
 
 class App extends React.Component {
     componentDidUpdate() {
@@ -51,7 +51,7 @@ class App extends React.Component {
                     <div className="feed">
                         <Route path="/" exact component={HomePage}></Route>
                         <Route path="/search" component={SearchPage}></Route>
-                        <Route path="/mylibrary" component={UserLibrary}></Route>
+                        <Route path="/mylibrary" component={UserLibraryPage}></Route>
                         <Route path="/user" component={UserPage}></Route>
                     </div>
                 </Router>
