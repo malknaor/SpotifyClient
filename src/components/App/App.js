@@ -17,7 +17,7 @@ import {
     EXPIRES_IN,
     REFRESH_TOKEN
 } from '../../constants/StorageKeys';
-import '../css/App.css';
+import '../../css/App.css';
 
 class App extends React.Component {
     componentDidUpdate() {

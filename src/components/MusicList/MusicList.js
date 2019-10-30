@@ -19,7 +19,7 @@ const MusicList = props => {
                         <li className="music-list-item" key={index}>
                             <Link className="item-image-link" to="/">
                                 <img className="album-cover" src={track.album.images[0].url} alt="album cover"></img>
-                                <img className="album-middle" src={require('../../resources/play.svg')} alt="album middle"></img>                                        
+                                <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
                             </Link>
                             <Link className="item-name-link" to={`/${track.name}`}>
                                 <p className="track-name">{track.name}</p>  

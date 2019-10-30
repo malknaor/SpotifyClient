@@ -28,3 +28,15 @@ export const fetchRecentlyPlayed = () => async dispatch => {
 
     dispatch({ type: FETCH_RECENTLY_PLAYED, payload: response.data });
 };
+
+export const fetchUserTopX = type => async dispatch => {
+    const { headers } = requestBody;
+    const response = await spotify.get(RECENTLY_PLAYED, {
+        body: {
+            type: type
+        },
+        headers: headers
+    });
+
+    dispatch({ type: FETCH_RECENTLY_PLAYED, payload: response.data });
+};
