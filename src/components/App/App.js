@@ -20,11 +20,7 @@ import {
 import '../../css/App.css';
 
 class App extends React.Component {
-    componentDidUpdate() {
-        this.renderPage();
-    }
-
-    componentDidMount() {
+   componentDidMount() {
         const urlParams = new URLSearchParams(window.location.search);
 
         // save to local storage

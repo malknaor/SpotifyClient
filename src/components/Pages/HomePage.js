@@ -99,10 +99,6 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {
-    // const recentlyPlayed = Array.isArray(state.recentlyPlayed)? null : state.recentlyPlayed;
-    // const topTracks = Array.isArray(state.topTracks)? null : state.userTopX.topTracks;
-    // const topArtists = Array.isArray(state.topArtists)? null : state.userTopX.topArtists;
-
     return { 
         recentlyPlayed: state.recentlyPlayed,
         topTracks: state.userTopX.topTracks,
