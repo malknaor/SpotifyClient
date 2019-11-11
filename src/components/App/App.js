@@ -1,8 +1,8 @@
 import React from 'react';
-import ls from 'local-storage';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import localStorageService from '../../Services/LocalStorageService';
 import { fetchUser } from '../actions/index';
 import MainNavigation from '../Naviagtion/MainNavigation';
 import HomePage from '../Pages/HomePage';
@@ -10,11 +10,9 @@ import SearchPage from '../Pages/SearchPage';
 import UserLibraryPage from '../Pages/UserLibraryPage';
 import UserPage from '../Pages/UserPage';
 import LoginPage from '../Pages/LoginPage';
+import MusicPlayerControls from '../MusicPlayerControl/MusicPlayerControls';
 import { 
     ACCESS_TOKEN, 
-    TOKEN_TYPE,
-    SCOPE,
-    EXPIRES_IN,
     REFRESH_TOKEN
 } from '../../constants/StorageKeys';
 import '../../css/App.css';
@@ -25,12 +23,12 @@ class App extends React.Component {
 
         // save to local storage
         if (urlParams.get(ACCESS_TOKEN)) {
-            // Update local storage
-            ls.set(ACCESS_TOKEN, urlParams.get(ACCESS_TOKEN));
-            ls.set(TOKEN_TYPE, urlParams.get(TOKEN_TYPE));
-            ls.set(SCOPE, urlParams.get(SCOPE));
-            ls.set(EXPIRES_IN, urlParams.get(EXPIRES_IN));
-            ls.set(REFRESH_TOKEN, urlParams.get(REFRESH_TOKEN));
+            const tokenObj = {
+                access_token: urlParams.get(ACCESS_TOKEN),
+                refresh_token: urlParams.get(REFRESH_TOKEN)
+            }
+            
+            localStorageService.setToken(tokenObj);
 
             // Update current user
             this.props.fetchUser();
@@ -41,12 +39,17 @@ class App extends React.Component {
         if (Object.keys(this.props.user).length > 0) {
             return (
                 <Router>
-                    <MainNavigation user={this.props.user}/>
-                    <div className="feed">
-                        <Route path="/" exact component={HomePage}></Route>
-                        <Route path="/search" component={SearchPage}></Route>
-                        <Route path="/mylibrary" component={UserLibraryPage}></Route>
-                        <Route path="/user" component={UserPage}></Route>
+                    <div className="app-upper-container">
+                        <MainNavigation user={this.props.user}/>
+                        <div className="app-page">
+                            <Route path="/" exact component={HomePage}></Route>
+                            <Route path="/search" component={SearchPage}></Route>
+                            <Route path="/mylibrary" component={UserLibraryPage}></Route>
+                            <Route path="/user" component={UserPage}></Route>
+                        </div>
+                    </div>
+                    <div className="app-lower-container">
+                        <MusicPlayerControls></MusicPlayerControls>
                     </div>
                 </Router>
             );
