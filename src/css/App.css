@@ -1,14 +1,30 @@
 .app-container {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: stretch;
     height: 100%;
     width: auto;
 }
 
-.feed {
+.app-page {
     flex: 5;
     display: flex;
     height: 100%;
     width: auto;
+}
+
+.app-upper-container {
+    flex: 1;
+    display: flex;
+    height: 90%;
+}
+
+.app-lower-container {
+    flex: 0.1;
+    display: flex;
+}
+
+.app-lower-container p {
+    flex: 1;
 }

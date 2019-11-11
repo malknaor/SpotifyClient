@@ -22,7 +22,7 @@ class HomePage extends React.Component {
         if (this.props.recentlyPlayed.items !== undefined) {
             return (
                 <MusicList title="Recently Played">
-                    {this.props.recentlyPlayed.items.slice(0, 5).map((current, index) => {
+                    {this.props.recentlyPlayed.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
@@ -44,7 +44,7 @@ class HomePage extends React.Component {
         if (this.props.topTracks.items !== undefined) {
             return (
                 <MusicList title="Top Tracks">
-                    {this.props.topTracks.items.slice(0, 5).map((current, index) => {
+                    {this.props.topTracks.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
@@ -66,12 +66,12 @@ class HomePage extends React.Component {
         if (this.props.topArtists.items !== undefined) {
             return (
                 <MusicList title="Top Artists">
-                    {this.props.topArtists.items.slice(0, 5).map((current, index) => {
+                    {this.props.topArtists.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
-                                    <img className="album-cover" src={current.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                    <img className="album-cover artist" src={current.images[0].url} alt="album cover"></img>
+                                    <img className="album-middle artist" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
                                 </Link>
                                 <Link className="item-name-link" to={`/${current.name}`}>
                                     <p className="track-name">{current.name}</p>  

@@ -33,6 +33,7 @@
     display: flex;
     color: white;
     text-decoration: none;
+    width: 100%;
 }
 
 .item-image-link:hover .album-cover {
@@ -44,27 +45,30 @@
 }
 
 .album-cover {
-    height: 250px;
-    width: 250px;
-    max-height: 250px;
-    max-width: 250px;
+    height: 225px;
+    width: 225px;
     opacity: 1;
-    position: absolute;
+    position: relative;
     backface-visibility: hidden;
-    transition: 0.5s ease;
+    transition: 0.4s ease;
 }
 
 .album-middle {
     opacity: 0;
+    height: 225px;
+    width: 225px;
     position: absolute;
-    max-height: 250px;
-    max-width: 250px;
-    position: relative;
-    transition: 0.5s ease;
+    transition: 0.4s ease;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .track-name {
     flex: 1;
-    font-size: 90%;
+    font-size: 80%;
     padding: 10px;
+    text-align: center;
+}
+
+.artist {
+    border-radius: 50%;
 }
