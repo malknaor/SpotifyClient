@@ -18,6 +18,7 @@
     background-color: rgb(57, 57, 146);
 }
 
+/* upper container */
 .player-controls__upper-container {
     flex: 2;
     display: flex;
@@ -73,11 +74,13 @@
     height: 80%;
 }
 
+/* lower container */
 .player-controls__lower-container {
     flex: 1;
     display: flex;
-    justify-content: center;
+    align-self: center;
     height: 40%;
+    width: 60%;
 }
 
 /***************** Current played *****************/
@@ -85,4 +88,3 @@
     flex: 1;
     display: flex;
 }
-

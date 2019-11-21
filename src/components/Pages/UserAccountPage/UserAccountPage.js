@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import '../../css/UserPage.css';
+import './UserAccountPage.css';
 
-class UserPage extends React.Component {
+class UserAccountPage extends React.Component {
     renderUser = () => {
         if (this.props.user) {
             return (
@@ -29,4 +29,4 @@ class UserPage extends React.Component {
 const mapstateToProps = state => {
     return { user: state.user };
 }
-export default connect(mapstateToProps)(UserPage);
+export default connect(mapstateToProps)(UserAccountPage);

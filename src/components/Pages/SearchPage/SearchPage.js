@@ -1,11 +1,12 @@
 import React from 'react';
 
-import '../../css/SearchPage.css';
+import SearchBar from '../../SearchBar/SearchBar';
+import './SearchPage.css';
 
 const SearchPage = () => {
     return (
         <div className="search-page">
-            Search Page
+            <SearchBar />
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../css/LoginPage.css';
+import './LoginPage.css';
 
 class LoginPage extends React.Component {
     onLoginBtnClick = () => {

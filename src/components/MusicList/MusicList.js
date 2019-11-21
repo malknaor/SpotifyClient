@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../css/MusicList.css';
+import './MusicList.css';
 
 const MusicList = props => {
     return (

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import PlayerButtonsContainer from './PlayerButtonsContainer';
-import ProgressBar from './ProgressBar';
-import '../../css/MusicPlayerControls.css';
+import AudioProgressBar from './AudioProgressBar';
+import './MusicPlayerControls.css';
 
 class MusicPlayerControls extends React.Component {
     render() {
@@ -21,7 +21,7 @@ class MusicPlayerControls extends React.Component {
                         <PlayerButtonsContainer />
                     </div>
                     <div className="player-controls__lower-container">
-                        <ProgressBar />
+                        <AudioProgressBar />
                     </div>
                 </div>
                 <div className="music-player__volume">

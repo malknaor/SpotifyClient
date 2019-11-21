@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Page from './Page';
-import SubNavigation from '../Naviagtion/SubNavigation';
-import MusicList from '../MusicList/MusicList';
+import Page from '../Page';
+import SubNavigation from '../../Naviagtion/SubNavigation';
+import MusicList from '../../MusicList/MusicList';
 import { 
     fetchRecentlyPlayed,
     fetchUserTopX
-} from '../actions';
-import '../../css/HomePage.css';
+} from '../../actions';
+import './HomePage.css';
 
 class HomePage extends React.Component {
     componentDidMount(){
@@ -27,7 +27,7 @@ class HomePage extends React.Component {
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
                                     <img className="album-cover" src={current.track.album.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                    <img className="album-middle" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
                                 </Link>
                                 <Link className="item-name-link" to={`/${current.track.name}`}>
                                     <p className="track-name">{current.track.name}</p>  
@@ -49,7 +49,7 @@ class HomePage extends React.Component {
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
                                     <img className="album-cover" src={current.album.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                    <img className="album-middle" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
                                 </Link>
                                 <Link className="item-name-link" to={`/${current.name}`}>
                                     <p className="track-name">{current.name}</p>  
@@ -71,7 +71,7 @@ class HomePage extends React.Component {
                             <li className="music-list-item" key={index}>
                                 <Link className="item-image-link" to="/">
                                     <img className="album-cover artist" src={current.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle artist" src={require('../../assets/images/play.svg')} alt="album middle"></img>                                        
+                                    <img className="album-middle artist" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
                                 </Link>
                                 <Link className="item-name-link" to={`/${current.name}`}>
                                     <p className="track-name">{current.name}</p>  

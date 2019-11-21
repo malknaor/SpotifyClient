@@ -1,8 +1,8 @@
 import React from 'react';
 
-import '../../css/UserLibrary.css';
+import './UserLibraryPage.css';
 
-const UserLibrary = () => {
+const UserLibraryPage = () => {
     return (
         <div className="user-lib-page">
             My Library
@@ -10,4 +10,4 @@ const UserLibrary = () => {
     );
 };
 
-export default UserLibrary;
+export default UserLibraryPage;

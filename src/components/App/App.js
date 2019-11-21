@@ -5,17 +5,17 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import localStorageService from '../../Services/LocalStorageService';
 import { fetchUser } from '../actions/index';
 import MainNavigation from '../Naviagtion/MainNavigation';
-import HomePage from '../Pages/HomePage';
-import SearchPage from '../Pages/SearchPage';
-import UserLibraryPage from '../Pages/UserLibraryPage';
-import UserPage from '../Pages/UserPage';
-import LoginPage from '../Pages/LoginPage';
+import HomePage from '../Pages/HomePage/HomePage';
+import SearchPage from '../Pages/SearchPage/SearchPage';
+import UserLibraryPage from '../Pages/UserLibraryPage/UserLibraryPage';
+import UserPage from '../Pages/UserAccountPage/UserAccountPage';
+import LoginPage from '../Pages/LoginPage/LoginPage';
 import MusicPlayerControls from '../MusicPlayerControl/MusicPlayerControls';
 import { 
     ACCESS_TOKEN, 
     REFRESH_TOKEN
 } from '../../constants/StorageKeys';
-import '../../css/App.css';
+import './App.css';
 
 class App extends React.Component {
    componentDidMount() {
