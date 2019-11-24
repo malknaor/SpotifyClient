@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Page from '../Page';
 import SubNavigation from '../../Naviagtion/SubNavigation';
 import MusicList from '../../MusicList/MusicList';
-import { 
+import {
     fetchRecentlyPlayed,
     fetchUserTopX
 } from '../../actions';
 import './HomePage.css';
+import DisplayCard from '../../MusicList/DisplayCard';
 
 class HomePage extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchRecentlyPlayed();
         this.props.fetchUserTopX('tracks');
         this.props.fetchUserTopX('artists');
@@ -25,13 +25,7 @@ class HomePage extends React.Component {
                     {this.props.recentlyPlayed.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <Link className="item-image-link" to="/">
-                                    <img className="album-cover" src={current.track.album.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
-                                </Link>
-                                <Link className="item-name-link" to={`/${current.track.name}`}>
-                                    <p className="track-name">{current.track.name}</p>  
-                                </Link>
+                                <DisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName="temp name" />
                             </li>
                         );
                     })}
@@ -47,13 +41,7 @@ class HomePage extends React.Component {
                     {this.props.topTracks.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <Link className="item-image-link" to="/">
-                                    <img className="album-cover" src={current.album.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
-                                </Link>
-                                <Link className="item-name-link" to={`/${current.name}`}>
-                                    <p className="track-name">{current.name}</p>  
-                                </Link>
+                                <DisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName="temp" />
                             </li>
                         );
                     })}
@@ -69,13 +57,7 @@ class HomePage extends React.Component {
                     {this.props.topArtists.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <Link className="item-image-link" to="/">
-                                    <img className="album-cover artist" src={current.images[0].url} alt="album cover"></img>
-                                    <img className="album-middle artist" src={require('../../../assets/images/play.svg')} alt="album middle"></img>                                        
-                                </Link>
-                                <Link className="item-name-link" to={`/${current.name}`}>
-                                    <p className="track-name">{current.name}</p>  
-                                </Link>
+                                <DisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="temp" />
                             </li>
                         );
                     })}
@@ -86,27 +68,27 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div className="home-page">
-                <Page>
+            <Page>
+                <div className="home-page">
                     <SubNavigation />
                     {this.renderRecentlyPlayed()}
                     {this.renderTopTracks()}
                     {this.renderTopArtists()}
-                </Page>
-            </div>
+                </div>
+            </Page>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return { 
+    return {
         recentlyPlayed: state.recentlyPlayed,
         topTracks: state.userTopX.topTracks,
         topArtists: state.userTopX.topArtists
     };
 };
 
-export default connect(mapStateToProps, { 
+export default connect(mapStateToProps, {
     fetchRecentlyPlayed,
     fetchUserTopX
 })(HomePage);

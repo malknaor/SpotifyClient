@@ -1,0 +1,39 @@
+.sub-navbar {
+    flex: 1 0 1;
+    display: flex;
+    align-self: center;
+    margin-top: 3%;
+    font-size: 90%;
+}
+
+.sub-navbar .nav-list {
+    flex: 1;
+    display:flex;
+    list-style: none;
+}
+
+.sub-navbar .nav-item {
+    flex: 1;
+    display: flex;
+}
+
+.sub-navbar .nav-link {
+    flex: 1;
+    color: rgb(209, 209, 209);
+    text-decoration: none;
+    margin: 0 20px;
+    transition: color 0.4s, 0.3s ease;
+    white-space: nowrap;
+}
+
+.sub-navbar .nav-link:link,
+.sub-navbar .nav-link:visited {
+    color: rgb(209, 209, 209);
+    border-bottom: 1px solid transparent;
+}
+
+.sub-navbar .nav-link:hover,
+.sub-navbar .nav-link:active {
+    color: white;
+    border-bottom: 1px solid #1DB954;
+}
