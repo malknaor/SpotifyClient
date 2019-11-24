@@ -32,6 +32,9 @@ class App extends React.Component {
 
             // Update current user
             this.props.fetchUser();
+        } else if (localStorageService.getToken()) {
+            // Update current user
+            this.props.fetchUser();
         }
     }
 

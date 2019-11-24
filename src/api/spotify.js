@@ -32,15 +32,19 @@ spotify.interceptors.response.use(
     error => {
         const originalRequest = error.config;
 
-        console.log(error);
-
-        if (error.statusCode === 401 && !originalRequest._retry) {
+        if (originalRequest._retry === undefined) {
+            originalRequest._retry = false;
+        }
+        
+        if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
 
-            return spotify.get('/refresh-token', {
-                "refresh_token": localStorageService.getRefreshToken()
+            return spotify.get('/refresh_token', {
+                params: {
+                    'refresh_token': localStorageService.getRefreshToken()
+                }
             })
-            .then( res => {
+            .then(res => {
                 if (res.status === 200) {
                     // Update new access_token in local storage
                     localStorageService.setToken(res.data);
@@ -51,10 +55,10 @@ spotify.interceptors.response.use(
                     // Return originalRequest
                     return spotify(originalRequest);
                 }
-            })
+            });
         }
 
-        if (error.statusCode === 401 && originalRequest.url === 'http://127.0.0.1:8888/refresh_token') {
+        if (error.response.status === 401 && originalRequest.url === 'http://localhost:8888/refresh_token') {
             Router.push('/');
             return Promise.reject(error);
         }
