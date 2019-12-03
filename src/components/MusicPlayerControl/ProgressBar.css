@@ -1,0 +1,73 @@
+.progress-container {
+    flex: 1;
+    display: flex;
+    align-self: center;
+    border-radius: 5px;
+    background-color: #404040;
+    height: 10%;
+    width: 100%;
+}
+
+.progress-wrapper {
+    flex: 1;
+    display: flex;
+    align-self: center;
+    visibility: visible;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+.progress-container:hover .progress-wrapper {
+    visibility: visible;
+}
+
+.progress-bar {
+    flex: 1;
+    align-self: center;
+    border: 2px solid #b3b3b3;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.progress-container:hover .progress-bar {
+    border: 2px solid #1DB954;
+}
+
+.draggable-point {
+    position: relative;
+    align-self: center;
+    visibility: hidden;
+    background-color: white;   
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 1%;
+    width: 1%;
+}
+
+.progress-container:hover .draggable-point {
+    visibility: visible;
+}
+
+.progress-slider {
+    align-self: center;
+    -webkit-appearance: none; 
+    appearance: inherit;
+    width: 100%;
+    height: 100%;
+    outline: none; 
+    background: transparent; 
+    border-radius: 5px;
+}
+
+.progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 10px; 
+    height: 10px;
+    border-radius: 50%;
+    background: white; 
+}
+
