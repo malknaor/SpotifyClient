@@ -52,7 +52,7 @@ class App extends React.Component {
                         </div>
                     </div>
                     <div className="app-lower-container">
-                        <MusicPlayerControls></MusicPlayerControls>
+                        <MusicPlayerControls />
                     </div>
                 </Router>
             );

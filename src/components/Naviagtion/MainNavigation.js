@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Navigation.css';
+import './MainNavigation.css';
 
 const MainNavigation = props => {
     return (
         <div className="main-navbar">
                 <div className="header">
                     <img className="spotify-logo" src={require('../../assets/images/spotify.svg')} alt="spotify-logo"></img>
-                    <h1 className="spotify-label">Spotify</h1>
+                    <h2 className="spotify-label">Spotify</h2>
                 </div>
                 <ul className="nav-list">
                     <li className="list-item">

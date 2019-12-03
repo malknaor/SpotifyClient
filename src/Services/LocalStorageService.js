@@ -3,16 +3,6 @@ import ls from 'local-storage';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants/StorageKeys';
 
 const LocalStorageService = (() => {
-    let _service;
-
-    const _getService = () => {
-        if (!_service) {
-            _service = this;
-        }
-
-        return _service;
-    }
-
     const _setToken = ({ access_token, refresh_token = undefined }) => {
         ls.set(ACCESS_TOKEN, access_token);
         
@@ -35,7 +25,6 @@ const LocalStorageService = (() => {
     }
 
     return {
-        getService: _getService,
         setToken: _setToken,
         getToken: _getAccessToken,
         getRefreshToken: _getRefreshToken,

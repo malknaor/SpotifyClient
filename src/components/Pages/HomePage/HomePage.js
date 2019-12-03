@@ -8,8 +8,8 @@ import {
     fetchRecentlyPlayed,
     fetchUserTopX
 } from '../../actions';
-import './HomePage.css';
 import DisplayCard from '../../MusicList/DisplayCard';
+import './HomePage.css';
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -25,7 +25,7 @@ class HomePage extends React.Component {
                     {this.props.recentlyPlayed.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName="temp name" />
+                                <DisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName={current.track.artists[0].name} />
                             </li>
                         );
                     })}
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
                     {this.props.topTracks.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName="temp" />
+                                <DisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName={current.artists[0].name} />
                             </li>
                         );
                     })}
@@ -57,7 +57,7 @@ class HomePage extends React.Component {
                     {this.props.topArtists.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="temp" />
+                                <DisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="artist" />
                             </li>
                         );
                     })}

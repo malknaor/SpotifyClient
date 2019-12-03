@@ -1,6 +1,3 @@
-import ls from 'local-storage';
-
-import { ACCESS_TOKEN } from '../../constants/StorageKeys';
 import { 
     FETCH_USER, 
     FETCH_RECENTLY_PLAYED,
@@ -13,47 +10,42 @@ import {
     USER_TOP_X 
 } from '../../constants/Routes';
 import spotify from '../../api/spotify';
-
-const requestBody = {
-    headers: {
-        Authorization: `Bearer ${ls.get(ACCESS_TOKEN)}`
-    }
-};
+import requestBody from './requestBody';
 
 export const fetchUser = () => async dispatch => {
-    const response = await spotify.get(USER_ACCOUNT, requestBody);
+    const res = await spotify.get(USER_ACCOUNT, requestBody);
 
-    dispatch({ type: FETCH_USER, payload: response.data });
+    dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 export const fetchRecentlyPlayed = () => async dispatch => {
-    const response = await spotify.get(RECENTLY_PLAYED, requestBody);
+    const res = await spotify.get(RECENTLY_PLAYED, requestBody);
 
-    dispatch({ type: FETCH_RECENTLY_PLAYED, payload: response.data });
+    dispatch({ type: FETCH_RECENTLY_PLAYED, payload: res.data });
 };
 
 export const fetchUserTopX = type => async dispatch => {
     const { headers } = requestBody;
     
     if (type === 'tracks') {
-        const response = await spotify.get(USER_TOP_X, {
+        const res = await spotify.get(USER_TOP_X, {
             headers: { 
                 ...headers,
                 type: type
             }
         });
     
-        dispatch({ type: FETCH_USER_TOP_TRACKS, payload: response.data });
+        dispatch({ type: FETCH_USER_TOP_TRACKS, payload: res.data });
     } 
     
     if (type === 'artists') {
-        const response = await spotify.get(USER_TOP_X, {
+        const res = await spotify.get(USER_TOP_X, {
             headers: { 
                 ...headers,
                 type: type
             }
         });
     
-        dispatch({ type: FETCH_USER_TOP_ARTISTS, payload: response.data });
+        dispatch({ type: FETCH_USER_TOP_ARTISTS, payload: res.data });
     }
 };
