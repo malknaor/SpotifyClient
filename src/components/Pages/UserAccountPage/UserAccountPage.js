@@ -33,6 +33,6 @@ class UserAccountPage extends React.Component {
 }
 
 const mapstateToProps = state => {
-    return { user: state.user };
+    return { user: state.user.user };
 }
 export default connect(mapstateToProps)(UserAccountPage);

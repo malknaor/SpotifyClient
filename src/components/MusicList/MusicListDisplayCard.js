@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './DisplayCard.css';
+import './MusicListDisplayCard.css';
 
-const DisplayCard = props => {
+const MusicListDisplayCard = props => {
     return (
         <div className="display-card">
             <Link className="item-image-link" to="/">
@@ -20,4 +20,4 @@ const DisplayCard = props => {
     );
 };
 
-export default DisplayCard;
+export default MusicListDisplayCard;

@@ -8,7 +8,7 @@ import {
     fetchRecentlyPlayed,
     fetchUserTopX
 } from '../../actions';
-import DisplayCard from '../../MusicList/DisplayCard';
+import MusicListDisplayCard from '../../MusicList/MusicListDisplayCard';
 import './HomePage.css';
 
 class HomePage extends React.Component {
@@ -19,13 +19,13 @@ class HomePage extends React.Component {
     }
 
     renderRecentlyPlayed() {
-        if (this.props.recentlyPlayed.items !== undefined) {
+        if (this.props.recentlyPlayed) {
             return (
                 <MusicList title="Recently Played">
                     {this.props.recentlyPlayed.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName={current.track.artists[0].name} />
+                                <MusicListDisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName={current.track.artists[0].name} />
                             </li>
                         );
                     })}
@@ -35,13 +35,14 @@ class HomePage extends React.Component {
     }
 
     renderTopTracks() {
-        if (this.props.topTracks.items !== undefined) {
+        console.log(this.props)
+        if (this.props.topTracks) {
             return (
                 <MusicList title="Top Tracks">
                     {this.props.topTracks.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName={current.artists[0].name} />
+                                <MusicListDisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName={current.artists[0].name} />
                             </li>
                         );
                     })}
@@ -51,13 +52,14 @@ class HomePage extends React.Component {
     }
 
     renderTopArtists() {
-        if (this.props.topArtists.items !== undefined) {
+        console.log(this.props)
+        if (this.props.topArtists) {
             return (
                 <MusicList title="Top Artists">
                     {this.props.topArtists.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <DisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="artist" />
+                                <MusicListDisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="artist" />
                             </li>
                         );
                     })}
@@ -81,8 +83,9 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state)
     return {
-        recentlyPlayed: state.recentlyPlayed,
+        recentlyPlayed: state.recentlyPlayed.recentlyPlayed,
         topTracks: state.userTopX.topTracks,
         topArtists: state.userTopX.topArtists
     };

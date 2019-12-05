@@ -1,9 +1,13 @@
 import { FETCH_USER } from '../../constants/ActionTypes';
 
-const fetchUserReducer = (state = {}, action) => {
+const initialUserState = {
+    user: null
+};
+
+const fetchUserReducer = (state = initialUserState, action) => {
     switch (action.type) {
         case FETCH_USER:
-            return action.payload;
+            return { ...state, user: action.payload };
         default:
             return state;
     }

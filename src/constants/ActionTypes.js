@@ -1,5 +1,7 @@
 /******* Search Actions Types *******/
 export const SEARCH_CONTENT = 'SEARCH_CONTENT';
+export const DEFAULT_SEARCH_CONTENT = 'DEFAULT_SEARCH_CONTENT';
+export const DELETE_SEARCH_RESULTS = 'DELETE_SEARCH_RESULTS';
 
 /******* User Feed Actions Types *******/
 export const FETCH_USER = 'FETCH_USER';

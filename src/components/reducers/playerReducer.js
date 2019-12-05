@@ -7,14 +7,14 @@ import {
     PLAYER_SHUFFLE
 } from '../../constants/ActionTypes';
 
-const initialState = {
+const initialPlayerState = {
     repeat: false,
     pause: true,
     play: false,
     shuffle: false
 }
 
-const playerReducer = (state = initialState, action) => {
+const playerReducer = (state = initialPlayerState, action) => {
     switch (action.type) {
         case PLAYER_REPEAT:
             return { ...state, repeat: !state.repeat };

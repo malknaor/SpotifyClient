@@ -1,9 +1,11 @@
 import { FETCH_RECENTLY_PLAYED } from '../../constants/ActionTypes';
 
-const fetchRecentlyPlayedReducer = (state = {}, action) => {
+const initialRecenentlyPlayedState = { recentlyPlayed: null };
+
+const fetchRecentlyPlayedReducer = (state = initialRecenentlyPlayedState, action) => {
     switch (action.type) {
         case FETCH_RECENTLY_PLAYED:
-            return action.payload;
+            return { ...state, recentlyPlayed: action.payload};
         default:
             return state;
     }

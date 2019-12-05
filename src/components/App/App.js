@@ -39,7 +39,7 @@ class App extends React.Component {
     }
 
     renderPage() {
-        if (Object.keys(this.props.user).length > 0) {
+        if (this.props.user) {
             return (
                 <Router>
                     <div className="app-upper-container">
@@ -73,7 +73,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { user: state.user }
+    return { user: state.user.user }
 };
 
 export default connect(mapStateToProps, { fetchUser })(App);
