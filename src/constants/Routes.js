@@ -1,5 +1,6 @@
 /******* User Feed Routes *******/
 export const SEARCH = '/search';
+export const SEARCH_DEFAULT_CONTENT = '/default-search-content';
 
 /******* User Feed Routes *******/
 export const USER_ACCOUNT = '/me';
