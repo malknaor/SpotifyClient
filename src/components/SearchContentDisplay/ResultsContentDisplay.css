@@ -1,6 +1,40 @@
 .results-content{
     flex: 1;
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
+    margin-top: 2%;
+}
+
+.leading-result {
+    flex: 1;
+    display: flex;
+    max-height: 100%;
+    max-width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.top-artist-result {
+    flex: 0.3;
+    display: flex;
+    margin-right: 4%;
+}
+
+.top-artist-tracks {
+    flex: 0.7;
+    display: flex;
+}
+
+.results-artists {
+    flex: 1;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.results-tracks {
+    flex: 1;
+    display: flex;
+    margin-bottom: 2%;
 }

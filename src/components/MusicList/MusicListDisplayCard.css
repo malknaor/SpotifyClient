@@ -79,5 +79,6 @@
 
 .artist-name {
     flex: 1;
+    padding-top: 2%;
     text-align: left;
 }
