@@ -16,6 +16,7 @@ class SongsLists extends React.Component {
 
             return (
                 <>
+<<<<<<< HEAD
                     {tracks.map((current, index) => {
                         const artistsNames = current.artists.map(current => current.name).join(', ');
 
@@ -25,6 +26,13 @@ class SongsLists extends React.Component {
                                 songName={current.name}
                                 artistName={artistsNames} key={index}
                             />
+=======
+                    {tracks.map((current, index) => {   
+                        const artistsNames = current.artists.map(current => current.name);
+
+                        return (
+                            <SongsListItem coverImg={current.album.images[0].url} songName={current.name} artistName={artistsNames.join(', ')} key={index}/>
+>>>>>>> cf131cdd2fc2cbaffb74b6976e56d9333051e352
                         );
                     })}
                 </>

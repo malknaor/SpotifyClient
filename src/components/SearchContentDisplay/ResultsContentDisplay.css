@@ -4,7 +4,11 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+<<<<<<< HEAD
     margin-left: 2%;
+=======
+    margin-top: 2%;
+>>>>>>> cf131cdd2fc2cbaffb74b6976e56d9333051e352
 }
 
 .leading-result {
@@ -19,7 +23,11 @@
 .top-artist-result {
     flex: 0.3;
     display: flex;
+<<<<<<< HEAD
     margin-right: 2%;
+=======
+    margin-right: 4%;
+>>>>>>> cf131cdd2fc2cbaffb74b6976e56d9333051e352
 }
 
 .top-artist-tracks {
@@ -30,14 +38,22 @@
 .results-artists {
     flex: 1;
     display: flex;
+<<<<<<< HEAD
+=======
+    margin-bottom: 2%;
+>>>>>>> cf131cdd2fc2cbaffb74b6976e56d9333051e352
 }
 
 .results-tracks {
     flex: 1;
     display: flex;
+<<<<<<< HEAD
 }
 
 .results-artists .list-wrapper,
 .results-tracks .list-wrapper {
     height: 90%;
+=======
+    margin-bottom: 2%;
+>>>>>>> cf131cdd2fc2cbaffb74b6976e56d9333051e352
 }
