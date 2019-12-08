@@ -5,6 +5,7 @@ import Page from '../Page';
 import { 
     searchContent,
     getDefaultSearchPageContent,
+    deleteArtistTracks,
     deleteSearchResults 
 } from '../../actions/index';
 import SearchContentDisplay from '../../SearchContentDisplay/SearchContentDisplay';
@@ -18,10 +19,10 @@ class SearchPage extends React.Component {
 
     onSearchInputChange = event => {
         if (event.target.value) {
-            this.props.searchContent(event.target.value);
-        } else {
             this.props.deleteSearchResults();
-        }
+            this.props.deleteArtistTracks();
+            this.props.searchContent(event.target.value);
+        } 
     }
 
     render() {
@@ -29,7 +30,10 @@ class SearchPage extends React.Component {
             <div className="search-page">
                 <Page>
                     <SearchBar onChange={this.onSearchInputChange} />
-                    <SearchContentDisplay searchResults={this.props.searchResults} defaultContent={this.props.defaultContent} />
+                    <SearchContentDisplay 
+                        searchResults={this.props.searchResults} 
+                        defaultContent={this.props.defaultContent}
+                        />
                 </Page>
             </div>
         );
@@ -46,5 +50,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
     searchContent,
     getDefaultSearchPageContent,
+    deleteArtistTracks,
     deleteSearchResults
 })(SearchPage);
