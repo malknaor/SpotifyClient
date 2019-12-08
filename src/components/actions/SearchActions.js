@@ -7,7 +7,7 @@ export const searchContent = value => async dispatch => {
     const res = await spotify.get(SEARCH, { 
         ...requestBody,
         params: {
-            q: value.toString().replace(" ", "%20"),
+            q: value.toString().replace(" ", "+"),
             type: "album,track"
         }
     });

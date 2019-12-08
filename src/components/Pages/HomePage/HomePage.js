@@ -35,7 +35,6 @@ class HomePage extends React.Component {
     }
 
     renderTopTracks() {
-        console.log(this.props)
         if (this.props.topTracks) {
             return (
                 <MusicList title="Top Tracks">
@@ -52,7 +51,6 @@ class HomePage extends React.Component {
     }
 
     renderTopArtists() {
-        console.log(this.props)
         if (this.props.topArtists) {
             return (
                 <MusicList title="Top Artists">
