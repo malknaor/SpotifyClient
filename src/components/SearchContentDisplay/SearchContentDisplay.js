@@ -10,20 +10,12 @@ class SearchContentDisplay extends React.Component {
             return (
                 <ResultsContentDisplay content={this.props.searchResults} />
             );
-        } else {
-            return (
-                <div>Loading Search Results...</div>
-            );
         }
     }
 
     renderDefaultContent = () => {
         if (this.props.defaultContent) {
             return <DefaultContent content={this.props.defaultContent} />;
-        } else {
-            return (
-                <div>Loading Default Content...</div>
-            );
         }
     }
 
