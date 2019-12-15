@@ -8,6 +8,7 @@ import {
     fetchRecentlyPlayed,
     fetchUserTopX
 } from '../../actions';
+import { playSong } from '../../actions/PlayerActions';
 import MusicListDisplayCard from '../../MusicList/MusicListDisplayCard';
 import './HomePage.css';
 
@@ -25,13 +26,22 @@ class HomePage extends React.Component {
                     {this.props.recentlyPlayed.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <MusicListDisplayCard coverSrc={current.track.album.images[0].url} name={current.track.name} artistName={current.track.artists[0].name} />
+                                <MusicListDisplayCard 
+                                    itemData={current}
+                                    coverSrc={current.track.album.images[0].url} 
+                                    name={current.track.name} 
+                                    artistName={current.track.artists[0].name}
+                                    onItemClick={this.props.play} 
+                                    deviceId={this.props.deviceId} 
+                                />
                             </li>
                         );
                     })}
                 </MusicList>
             );
         }
+
+        return null;
     }
 
     renderTopTracks() {
@@ -41,13 +51,22 @@ class HomePage extends React.Component {
                     {this.props.topTracks.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <MusicListDisplayCard coverSrc={current.album.images[0].url} name={current.name} artistName={current.artists[0].name} />
+                                <MusicListDisplayCard 
+                                    itemData={current}
+                                    coverSrc={current.album.images[0].url} 
+                                    name={current.name} 
+                                    artistName={current.artists[0].name} 
+                                    onItemClick={this.props.play} 
+                                    deviceId={this.props.deviceId} 
+                                />
                             </li>
                         );
                     })}
                 </MusicList>
             );
-        }
+        } 
+
+        return null;
     }
 
     renderTopArtists() {
@@ -57,13 +76,23 @@ class HomePage extends React.Component {
                     {this.props.topArtists.items.slice(0, 6).map((current, index) => {
                         return (
                             <li className="music-list-item" key={index}>
-                                <MusicListDisplayCard coverSrc={current.images[0].url} name={current.name} isArtist="true" artistName="artist" />
+                                <MusicListDisplayCard 
+                                    itemData={current}
+                                    coverSrc={current.images[0].url} 
+                                    name={current.name} 
+                                    isArtist="true" 
+                                    artistName="artist" 
+                                    onItemClick={this.props.play} 
+                                    deviceId={this.props.deviceId} 
+                                />
                             </li>
                         );
                     })}
                 </MusicList>
             );
         }
+
+        return null;
     }
 
     render() {
@@ -84,11 +113,13 @@ const mapStateToProps = state => {
     return {
         recentlyPlayed: state.recentlyPlayed.recentlyPlayed,
         topTracks: state.userTopX.topTracks,
-        topArtists: state.userTopX.topArtists
+        topArtists: state.userTopX.topArtists,
+        deviceId: state.player.deviceId
     };
 };
 
 export default connect(mapStateToProps, {
     fetchRecentlyPlayed,
-    fetchUserTopX
+    fetchUserTopX,
+    play: playSong
 })(HomePage);
