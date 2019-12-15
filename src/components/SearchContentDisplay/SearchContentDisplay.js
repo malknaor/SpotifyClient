@@ -6,21 +6,37 @@ import './SearchContentDisplay.css';
 
 class SearchContentDisplay extends React.Component {
     renderSearchResults = () => {
-        if (this.props.searchResults) {
+        const {deviceId, onItemClick, searchResults } = this.props;
+
+        if (searchResults) {
             return (
-                <ResultsContentDisplay content={this.props.searchResults} />
+                <ResultsContentDisplay 
+                    deviceId={deviceId} 
+                    onItemClick={onItemClick} 
+                    content={searchResults} 
+                />
             );
         }
     }
 
     renderDefaultContent = () => {
-        if (this.props.defaultContent) {
-            return <DefaultContent content={this.props.defaultContent} />;
+        const {deviceId, onItemClick, defaultContent } = this.props;
+
+        if (defaultContent) {
+            return (
+                <DefaultContent 
+                    deviceId={deviceId} 
+                    onItemClick={onItemClick} 
+                    content={defaultContent} 
+                />
+            );
         }
     }
 
     renderContent = () => {
-        return !this.props.searchResults ? this.renderDefaultContent() : this.renderSearchResults();
+        const { searchResults } = this.props;
+        
+        return !searchResults ? this.renderDefaultContent() : this.renderSearchResults();
     }
 
     render() {

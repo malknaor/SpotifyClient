@@ -6,7 +6,8 @@ import {
     searchContent,
     getDefaultSearchPageContent,
     deleteArtistTracks,
-    deleteSearchResults
+    deleteSearchResults,
+    playSong
 } from '../../actions/index';
 import SearchContentDisplay from '../../SearchContentDisplay/SearchContentDisplay';
 import SearchBar from '../../SearchBar/SearchBar';
@@ -14,7 +15,6 @@ import './SearchPage.css';
 import { debounce } from '../../../utils/jsUtils';
 
 class SearchPage extends React.Component {
-
     componentDidMount() {
         this.props.getDefaultSearchPageContent();
     }
@@ -28,13 +28,17 @@ class SearchPage extends React.Component {
     }, 300);
 
     render() {
+        const { deviceId, searchResults, defaultContent, play } = this.props;
+
         return (
             <div className="search-page">
                 <Page>
                     <SearchBar onChange={event => this.onSearchInputChange(event.target.value)} />
                     <SearchContentDisplay
-                        searchResults={this.props.searchResults}
-                        defaultContent={this.props.defaultContent}
+                        deviceId={deviceId}
+                        onItemClick={play}
+                        searchResults={searchResults}
+                        defaultContent={defaultContent}
                     />
                 </Page>
             </div>
@@ -45,7 +49,8 @@ class SearchPage extends React.Component {
 const mapStateToProps = state => {
     return {
         searchResults: state.search.searchResults,
-        defaultContent: state.search.defaultContent
+        defaultContent: state.search.defaultContent,
+        deviceId: state.player.deviceId
     };
 };
 
@@ -53,5 +58,6 @@ export default connect(mapStateToProps, {
     searchContent,
     getDefaultSearchPageContent,
     deleteArtistTracks,
-    deleteSearchResults
+    deleteSearchResults,
+    play: playSong
 })(SearchPage);

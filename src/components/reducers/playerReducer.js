@@ -25,7 +25,7 @@ const playerReducer = (state = initialPlayerState, action) => {
         case PLAYER_PAUSE:
             return { ...state, pause: !state.pause, play: !state.play };
         case PLAYER_PLAY:
-            return { ...state, play: !state.play, pause: !state.pause };
+            return !state.play? { ...state, play: !state.play, pause: !state.pause } : { ...state };
         case PLAYER_SHUFFLE:
             return { ...state, shuffle: !state.shuffle };
         case PLAYER_PREV_SONG:
