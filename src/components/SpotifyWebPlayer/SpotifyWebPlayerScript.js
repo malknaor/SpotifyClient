@@ -1,6 +1,8 @@
 import React from 'react';
 import Script from 'react-load-script';
+import { connect } from 'react-redux';
 
+import { setDeviceId } from '../actions/index';
 import localStorageService from '../../Services/LocalStorageService';
 
 class SpotifyWebPlayerScript extends React.Component {
@@ -24,6 +26,7 @@ class SpotifyWebPlayerScript extends React.Component {
             // Ready
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with Device ID', device_id);
+                this.props.setDeviceId(device_id);
             });
 
             // Not Ready
@@ -48,4 +51,4 @@ class SpotifyWebPlayerScript extends React.Component {
     }
 }
 
-export default SpotifyWebPlayerScript;
+export default connect(null, { setDeviceId })(SpotifyWebPlayerScript);

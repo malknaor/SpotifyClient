@@ -14,7 +14,6 @@ spotify.interceptors.request.use(
 
         if (token) {
             config.headers['Authorization'] = 'Bearer ' + token;
-            // config.headers['Content-type'] = 'application/x-www-form-urlencoded';
         }
 
         return config;

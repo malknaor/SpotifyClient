@@ -12,6 +12,7 @@ export const FETCH_USER_TOP_TRACKS = 'FETCH_USER_TOP_TRACKS';
 export const FETCH_USER_TOP_ARTISTS = 'FETCH_USER_TOP_ARTISTS';
 
 /******* Player Actions Types *******/
+export const SET_DEVICE_ID = "SET_DEVICE_ID";
 export const PLAYER_REPEAT = "PLAYER_REPEAT";
 export const PLAYER_PREV_SONG = "PLAYER_PREV_SONG";
 export const PLAYER_PAUSE = "PLAYER_PAUSE";

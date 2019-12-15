@@ -1,4 +1,5 @@
-import { 
+import {
+    SET_DEVICE_ID,
     PLAYER_REPEAT,
     PLAYER_PREV_SONG,
     PLAYER_PAUSE,
@@ -6,7 +7,7 @@ import {
     PLAYER_NEXT_SONG,
     PLAYER_SHUFFLE
 } from '../../constants/ActionTypes';
-import { 
+import {
     REPEAT,
     PREV_SONG,
     PAUSE_SONG,
@@ -15,40 +16,69 @@ import {
     SHUFFLE
 } from '../../constants/Routes';
 import requestBody from './requestBody';
-import spotify from '../../api/spotify';
+import spotifyPlayer from '../../api/spotifyPlayer';
 
-export const repeatSong = () => async dispatch => {
-    const res = await spotify.put(REPEAT, requestBody);
-
-    dispatch({ type: PLAYER_REPEAT, payload: res.data });
+export const setDeviceId = deviceId => async dispatch => {
+    dispatch({ type: SET_DEVICE_ID, payload: deviceId });
 };
 
-export const prevSong = () => async dispatch => {
-    const res = await spotify.put(PREV_SONG, requestBody);
+export const repeatSongs = deviceId => async dispatch => {
+    await spotifyPlayer.put(`${REPEAT}?device_id=${deviceId}`, {}, {
+        headers: requestBody.headers
+    });
 
-    dispatch({ type: PLAYER_PREV_SONG, payload: res.data });
+    dispatch({ type: PLAYER_REPEAT });
 };
 
-export const pauseSong = () => async dispatch => {
-    const res = await spotify.put(PAUSE_SONG, requestBody);
+export const prevSong = deviceId => async dispatch => {
+    await spotifyPlayer.post(`${PREV_SONG}?device_id=${deviceId}`, {}, {
+        headers: requestBody.headers
+    });
 
-    dispatch({ type: PLAYER_PAUSE, payload: res.data });
+    dispatch({ type: PLAYER_PREV_SONG });
 };
 
-export const playSong = () => async dispatch => {
-    const res = await spotify.put(PLAY_SONG, requestBody);
+export const pauseSong = deviceId => async dispatch => {
+    await spotifyPlayer.put(`${PAUSE_SONG}?device_id=${deviceId}`, {}, {
+        headers: requestBody.headers
+    });
 
-    dispatch({ type: PLAYER_PLAY, payload: res.data });
+    dispatch({ type: PLAYER_PAUSE });
 };
 
-export const nextSong = () => async dispatch => {
-    const res = await spotify.put(NEXT_SONG, requestBody);
+export const playSong = (deviceId, context_uri = null, uris = null) => async dispatch => {
+    let bodyContent = {};
 
-    dispatch({ type: PLAYER_NEXT_SONG, payload: res.data });
+    if (context_uri && !uris) {
+        bodyContent = { "context_uri": context_uri };
+    } else if (!context_uri && uris) {
+        bodyContent = { "uris": uris };
+    }
+
+    await spotifyPlayer.put(
+        `${PLAY_SONG}?device_id=${deviceId}`,
+        bodyContent, {
+        headers: {
+            Authorization: requestBody.headers.Authorization,
+            "Content-Type": "application/json"
+        }
+    });
+
+    dispatch({ type: PLAYER_PLAY });
 };
 
-export const shuffleSong = () => async dispatch => {
-    const res = await spotify.put(SHUFFLE, requestBody);
+export const nextSong = deviceId => async dispatch => {
+    await spotifyPlayer.post(`${NEXT_SONG}?device_id=${deviceId}`, {}, {
+        headers: requestBody.headers
+    });
 
-    dispatch({ type: PLAYER_SHUFFLE, payload: res.data });
+    dispatch({ type: PLAYER_NEXT_SONG });
+};
+
+export const shuffleSongs = deviceId => async dispatch => {
+    await spotifyPlayer.put(`${SHUFFLE}?device_id=${deviceId}`, {}, {
+        headers: requestBody.headers
+    });
+
+    dispatch({ type: PLAYER_SHUFFLE });
 };

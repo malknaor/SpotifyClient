@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect  }from 'react-redux';
 
 import SpotifyWebPlayerScript from '../SpotifyWebPlayer/SpotifyWebPlayerScript';
 import PlayerButtonsContainer from './PlayerButtonsContainer';
@@ -39,4 +40,8 @@ class MusicPlayerControls extends React.Component {
     }
 }
 
-export default MusicPlayerControls;
+const mapStateToProps = state => {
+    return { player: state.player }
+}
+
+export default connect(mapStateToProps)(MusicPlayerControls);
