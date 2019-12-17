@@ -3,11 +3,13 @@
     display: flex;
     background-color: rgb(48, 48, 48);
     border-top: 1px solid rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
 }
 
 /***************** Volume Controls *****************/
 .music-player__volume {
-    flex: 1;
+    flex: 2;
     display: flex;
 }
 
@@ -29,57 +31,8 @@
     align-items: flex-end;
     align-self: center;
     height: 100%;
-    width: 30%;
-    max-height: 100%;
-}
-
-.music-player__list {
-    flex: 1;
-    display: flex;
-    align-items: flex-end;
-    list-style: none;
-    height: 80%;
-    width: 40%;
-}
-
-.music-player__item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    height: 90%;
     width: 50%;
-}
-
-.music-player__button--icon {
-    flex: 1;
-    height: 100%;
-    width: 100%;
-}
-
-.general-btns {
-    flex: 1;
-    width: 30%;
-    height: 30%;
-    transition: 0.1s ease;
-}
-
-.general-btns:hover {
-    flex: 1;
-    width: 35%;
-    height: 35%;
-}
-
-.play-pause-btns {
-    flex: 1;
-    width: 70%;
-    height: 70%;
-    transition: 0.1s ease;
-}
-
-.play-pause-btns:hover {
-    flex: 1;
-    width: 75%;
-    height: 75%;
+    max-height: 100%;
 }
 
 /* lower container */
@@ -88,11 +41,13 @@
     display: flex;
     align-self: center;
     height: 50%;
-    width: 50%;
+    width: 60%;
 }
 
 /***************** Current played *****************/
 .music-player__currently-played {
-    flex: 1;
+    flex: 2;
     display: flex;
+    width: 100%;
+    height: 100%;
 }

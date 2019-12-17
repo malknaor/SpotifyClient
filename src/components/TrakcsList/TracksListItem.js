@@ -1,24 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import './SongsListItem.css';
+import './TracksListItem.css';
 
-const SongsListItem = props => {
+const TracksListItem = props => {
     return (
         <li className="songs-list-item">
             <div className="item-start">
                 <img className="song-cover" src={props.coverImg} alt="cover"></img>
             </div>
             <div className="item-middle">
-                <Link className="song-name-link" to={`/`}>
+                <div className="song-name-link">
                     <p className="track-name">{props.songName}</p>
-                </Link>
-                <Link className="song-name-link" to={`/`}>
+                </div>
+                <div className="song-name-link">
                     <p className="artist-name">{props.artistName}</p>
-                </Link>
+                </div>
             </div>
         </li>
     );
 };
 
-export default SongsListItem;
+export default TracksListItem;

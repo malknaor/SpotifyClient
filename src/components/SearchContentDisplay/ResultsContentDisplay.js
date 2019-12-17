@@ -2,7 +2,7 @@ import React from "react";
 
 import MusicList from "../MusicList/MusicList";
 import MusicListDisplayCard from "../MusicList/MusicListDisplayCard";
-import SongsLists from "../SongsList.js/SongsList";
+import TracksList from "../TrakcsList/TracksList";
 import './ResultsContentDisplay.css';
 
 const ResultsContentDisplay = props => {
@@ -27,11 +27,11 @@ const ResultsContentDisplay = props => {
                         </MusicList>
                     </div>
                     <div className="top-artist-tracks">
-                        <SongsLists
+                        <TracksList
                             title="Related tracks"
                             artistId={albums.items[0].artists[0].id}
-                            onItemClick={onItemClick}
                             deviceId={deviceId}
+                            onItemClick={onItemClick}
                         />
                     </div>
                 </div>

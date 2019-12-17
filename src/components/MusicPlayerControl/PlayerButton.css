@@ -1,0 +1,31 @@
+.music-player__button--icon {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.general-btns {
+    flex: 1;
+    width: 30%;
+    height: 30%;
+    transition: 0.1s ease;
+}
+
+.general-btns:hover {
+    flex: 1;
+    width: 35%;
+    height: 35%;
+}
+
+.play-pause-btns {
+    flex: 1;
+    width: 70%;
+    height: 70%;
+    transition: 0.1s ease;
+}
+
+.play-pause-btns:hover {
+    flex: 1;
+    width: 75%;
+    height: 75%;
+}

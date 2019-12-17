@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { getRecommendationByArtist } from '../actions/SearchActions';
-import SongsListItem from './SongListItem';
-import './SongsList.css';
+import TrakcsListItem from './TracksListItem';
+import './TracksList.css';
 
-class SongsLists extends React.Component {
+class TracksList extends React.Component {
     componentDidMount() {
         this.props.getRecommendationByArtist(this.props.artistId)
     }
@@ -20,7 +20,7 @@ class SongsLists extends React.Component {
                         const artistsNames = current.artists.map(current => current.name).join(', ');
 
                         return (
-                            <SongsListItem
+                            <TrakcsListItem
                                 coverImg={current.album.images[0].url}
                                 songName={current.name}
                                 artistName={artistsNames} key={index}
@@ -48,4 +48,4 @@ const mapStateToProps = state => {
     return { tracks: state.search.artistTracks }
 }
 
-export default connect(mapStateToProps, { getRecommendationByArtist })(SongsLists);
+export default connect(mapStateToProps, { getRecommendationByArtist })(TracksList);

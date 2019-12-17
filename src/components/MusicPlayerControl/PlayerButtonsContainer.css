@@ -1,0 +1,16 @@
+.music-player__list {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    list-style: none;
+    height: 80%;
+    width: 50%;
+}
+
+.music-player__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 90%;
+    width: 50%;
+}

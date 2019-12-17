@@ -1,9 +1,9 @@
 import React from 'react';
 
 import ProgressBar from './ProgressBar';
-import './AudioProgressBar.css';
+import './AudioDurationProgressBar.css';
 
-const AudioProgressBar = props => {
+const AudioDurationProgressBar = props => {
     return (
         <div className="audio-progress-container">
             <div className="song-duration">
@@ -17,4 +17,4 @@ const AudioProgressBar = props => {
     );
 };
 
-export default AudioProgressBar;
+export default AudioDurationProgressBar;

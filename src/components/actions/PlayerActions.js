@@ -1,5 +1,6 @@
 import {
     SET_DEVICE_ID,
+    SET_CURRENT_TRACK,
     PLAYER_REPEAT,
     PLAYER_PREV_SONG,
     PLAYER_PAUSE,
@@ -18,8 +19,12 @@ import {
 import requestBody from './requestBody';
 import spotifyPlayer from '../../api/spotifyPlayer';
 
-export const setDeviceId = deviceId => async dispatch => {
+export const setDeviceId = deviceId => dispatch => {
     dispatch({ type: SET_DEVICE_ID, payload: deviceId });
+};
+
+export const setCurrentTrack = track => dispatch => {
+    dispatch({ type: SET_CURRENT_TRACK, payload: track });
 };
 
 export const repeatSongs = deviceId => async dispatch => {

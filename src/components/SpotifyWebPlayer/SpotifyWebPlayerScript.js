@@ -2,12 +2,13 @@ import React from 'react';
 import Script from 'react-load-script';
 import { connect } from 'react-redux';
 
-import { setDeviceId } from '../actions/index';
+import { setDeviceId, setCurrentTrack } from '../actions/index';
 import localStorageService from '../../Services/LocalStorageService';
 
 class SpotifyWebPlayerScript extends React.Component {
     onLoad = () => {
         window.onSpotifyWebPlaybackSDKReady = () => {
+            const { setDeviceId, setCurrentTrack } = this.props;
             const token = localStorageService.getToken();
             const player = new window.Spotify.Player({
                 name: 'Web Playback SDK Quick Start Player',
@@ -21,12 +22,21 @@ class SpotifyWebPlayerScript extends React.Component {
             player.addListener('playback_error', ({ message }) => { console.error(message); });
 
             // Playback status updates
-            player.addListener('player_state_changed', state => { console.log(state); });
+            player.addListener('player_state_changed', state => {
+                let currentTrack = null;
+                
+                if (state) {
+                    const { track_window } = state;
+
+                    currentTrack = track_window.current_track;
+                }
+                
+                setCurrentTrack(currentTrack);
+            });
 
             // Ready
             player.addListener('ready', ({ device_id }) => {
-                console.log('Ready with Device ID', device_id);
-                this.props.setDeviceId(device_id);
+                setDeviceId(device_id);
             });
 
             // Not Ready
@@ -51,4 +61,7 @@ class SpotifyWebPlayerScript extends React.Component {
     }
 }
 
-export default connect(null, { setDeviceId })(SpotifyWebPlayerScript);
+export default connect(null, {
+    setDeviceId,
+    setCurrentTrack
+})(SpotifyWebPlayerScript);

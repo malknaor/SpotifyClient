@@ -4,7 +4,7 @@ import playCardIcon from '../../assets/images/play.svg';
 import './MusicListDisplayCard.css';
 
 const MusicListDisplayCard = props => {
-    const { isArtist, itemData, coverSrc, onItemClick, deviceId, name, artistName } = props;
+    const { isArtist = false, itemData, coverSrc, onItemClick, deviceId, name, artistName } = props;
     
     return (
         <div className="display-card">
@@ -15,7 +15,13 @@ const MusicListDisplayCard = props => {
                     src={playCardIcon} 
                     alt="album middle" 
                     onClick={() => {
-                        isArtist? onItemClick(deviceId, itemData.uri) : onItemClick(deviceId, null, [itemData.uri]);
+                        if (isArtist) {
+                            onItemClick(deviceId, itemData.uri);
+                        } else {
+                            let trackUri = itemData.uri || itemData.track.uri;
+
+                            onItemClick(deviceId, null, [trackUri]);
+                        }
                 }}></img>
             </div>
             <div className="item-name-link">

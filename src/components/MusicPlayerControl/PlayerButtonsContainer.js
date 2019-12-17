@@ -9,7 +9,7 @@ import pauseButtonsImage from '../../assets/images/player_pause.svg';
 import playButtonsImage from '../../assets/images/player_play.svg';
 import nextButtonsImage from '../../assets/images/player_next.svg';
 import shuffleButtonsImage from '../../assets/images/player_shuffle.svg';
-import './MusicPlayerControls.css';
+import './PlayerButtonsContainer.css';
 
 const GEN_BUTTONS_CLASSNAME = 'music-player__button--icon general-btns';
 const PLAY_PAUSE_BUTTONS_CLASSNAME = 'music-player__button--icon play-pause-btns';
