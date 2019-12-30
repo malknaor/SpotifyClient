@@ -2,13 +2,17 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    max-width: 90%;
-    min-width: 90%;
+    height: 100%;
+    width: 100%;
 }
 
 .songs-list-title {
     flex: 0.1;
-    padding: 1%;
+    padding-bottom: 0.5%;
+}
+
+.songs-list :last-child {
+    margin-bottom: 0;
 }
 
 .songs-list {
@@ -17,7 +21,8 @@
     flex-direction: column;
     list-style: none;
     overflow-y: scroll;
-    margin: 1% 0;
+    height: 100%;
+    width: 90%;
 }
 
 .songs-list::-webkit-scrollbar {

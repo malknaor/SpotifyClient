@@ -4,37 +4,49 @@ import spotify from "../../api/spotify";
 import requestBody from './requestBody';
 
 export const searchContent = value => async dispatch => {
-    const res = await spotify.get(SEARCH, { 
-        ...requestBody,
-        params: {
-            q: value.toString().replace(" ", "+"),
-            type: "album,track"
-        }
-    });
+    try {
+        const res = await spotify.get(SEARCH, {
+            ...requestBody,
+            params: {
+                q: value.toString().replace(" ", "+"),
+                type: "album,track"
+            }
+        });
 
-    dispatch({ type: SEARCH_CONTENT, payload: res.data });
+        dispatch({ type: SEARCH_CONTENT, payload: res.data });
+    } catch (error) {
+        console.log("TCL: searchContent -> error", error);
+    }
 };
 
 export const getDefaultSearchPageContent = () => async dispatch => {
-    const res = await spotify.get(SEARCH_DEFAULT_CONTENT, { 
-        ...requestBody,
-        params: {
-            seed_genres: "rock"
-        }
-    });
+    try {
+        const res = await spotify.get(SEARCH_DEFAULT_CONTENT, {
+            ...requestBody,
+            params: {
+                seed_genres: "rock"
+            }
+        });
 
-    dispatch({ type: DEFAULT_SEARCH_CONTENT, payload: res.data });
+        dispatch({ type: DEFAULT_SEARCH_CONTENT, payload: res.data });
+    } catch (error) {
+        console.log("TCL: getDefaultSearchPageContent-> error", error);
+    }
 };
 
 export const getRecommendationByArtist = artistsId => async dispatch => {
-    const res = await spotify.get(SEARCH_DEFAULT_CONTENT, { 
-        ...requestBody,
-        params: {
-            seed_artists: `${artistsId}`
-        }
-    });
+    try {
+        const res = await spotify.get(SEARCH_DEFAULT_CONTENT, {
+            ...requestBody,
+            params: {
+                seed_artists: `${artistsId}`
+            }
+        });
 
-    dispatch({ type: GET_REC_BY_ARTIST, payload: res.data });
+        dispatch({ type: GET_REC_BY_ARTIST, payload: res.data });
+    } catch (error) {
+        console.log("TCL: getRecommendationByArtist-> error", error);
+    }
 };
 
 export const deleteArtistTracks = () => dispatch => {
