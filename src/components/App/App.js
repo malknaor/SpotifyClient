@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import localStorageService from '../../Services/LocalStorageService';
 import { fetchUser } from '../actions/index';
@@ -11,14 +11,14 @@ import UserLibraryPage from '../Pages/UserLibraryPage/UserLibraryPage';
 import UserPage from '../Pages/UserAccountPage/UserAccountPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import MusicPlayerControls from '../MusicPlayerControl/MusicPlayerControls';
-import { 
-    ACCESS_TOKEN, 
+import {
+    ACCESS_TOKEN,
     REFRESH_TOKEN
 } from '../../constants/StorageKeys';
 import './App.css';
 
 class App extends React.Component {
-   componentDidMount() {
+    componentDidMount() {
         const urlParams = new URLSearchParams(window.location.search);
 
         // save to local storage
@@ -27,7 +27,7 @@ class App extends React.Component {
                 access_token: urlParams.get(ACCESS_TOKEN),
                 refresh_token: urlParams.get(REFRESH_TOKEN)
             }
-            
+
             localStorageService.setToken(tokenObj);
 
             // Update current user
@@ -43,12 +43,14 @@ class App extends React.Component {
             return (
                 <Router>
                     <div className="app-upper-container">
-                        <MainNavigation user={this.props.user}/>
+                        <MainNavigation user={this.props.user} />
                         <div className="app-page">
-                            <Route path="/" exact component={HomePage}></Route>
-                            <Route path="/search" component={SearchPage}></Route>
-                            <Route path="/mylibrary" component={UserLibraryPage}></Route>
-                            <Route path="/user" component={UserPage}></Route>
+                            <Switch>
+                                <Route path="/" exact component={HomePage}></Route>
+                                <Route path="/search" component={SearchPage}></Route>
+                                <Route path="/mylibrary" component={UserLibraryPage}></Route>
+                                <Route path="/user" component={UserPage}></Route>
+                            </Switch>
                         </div>
                     </div>
                     <div className="app-lower-container">
