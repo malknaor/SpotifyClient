@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { limitTitle } from '../../utils/jsUtils';
 import './CurrentlyPlayingDisplay.css';
 
 const CurrentlyPlayingDisplay = props => {
@@ -12,10 +13,10 @@ const CurrentlyPlayingDisplay = props => {
                 <img className="track-cover" src={currentTrackData.album.images[0].url} alt="track-cover"></img>
                 <div className="track-details">
                     <div className="track-sub-details">
-                        <p className="track-name">{currentTrackData.name}</p>
+                        <p className="track-name">{limitTitle(currentTrackData.name, 20)}</p>
                     </div>
                     <div className="track-sub-details">
-                        <p className="artist-name">{currentTrackData.artists[0].name}</p>
+                        <p className="artist-name">{limitTitle(currentTrackData.artists[0].name)}</p>
                     </div>
                 </div>
             </div>

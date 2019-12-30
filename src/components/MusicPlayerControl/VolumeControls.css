@@ -1,0 +1,26 @@
+.volume_controls_container {
+    flex: 1;
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 50%;
+    max-height: 35%;
+}
+
+.volume_icon {
+    flex: 0.3;
+    align-self: center;
+    height: 50%;
+    max-height: 20px;
+    max-width: 20px;
+    border: 1px solid transparent;
+}
+
+.volume_icon:hover {
+    height: 60%;
+}
+
+.volume_controls_container .progress-container {
+    flex: 0.7;
+}

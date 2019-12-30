@@ -1,20 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import ProgressBar from './ProgressBar';
+import ProgressBar from '../ProgressBar/ProgressBar';
+import { convertSongDuraionHMS } from '../../utils/jsUtils';
 import './AudioDurationProgressBar.css';
 
+
 const AudioDurationProgressBar = props => {
+    const { currentTrackData, isPlay } = props.player;
+
     return (
         <div className="audio-progress-container">
             <div className="song-duration">
-                <p>{props.currentDuration? props.currentDuration : '0:00'}</p>
+                <p>{props.currentDurationMS ? props.currentDurationMS : '0:00'}</p>
             </div>
-            <ProgressBar />
+            <ProgressBar
+                onChange={() => console.log('current duration changed')}
+                currentValue={props.currentDuration}
+                minVal={0}
+                maxVal={props.songDuration}
+            />
             <div className="song-duration">
-                <p>{props.songDuration? props.songDuration : '0:00'}</p>
+                <p>{props.songDurationMS ? props.songDurationMS : '0:00'}</p>
             </div>
         </div>
     );
 };
 
-export default AudioDurationProgressBar;
+const mapStateToProps = state => {
+    return { player: state.player };
+};
+
+export default connect(mapStateToProps)(AudioDurationProgressBar);
