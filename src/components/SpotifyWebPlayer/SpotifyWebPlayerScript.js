@@ -29,9 +29,8 @@ class SpotifyWebPlayerScript extends React.Component {
                     const { track_window } = state;
 
                     currentTrack = track_window.current_track;
+                    setCurrentTrack(currentTrack);
                 }
-                
-                setCurrentTrack(currentTrack);
             });
 
             // Ready

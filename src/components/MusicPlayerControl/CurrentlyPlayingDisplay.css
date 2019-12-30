@@ -24,24 +24,28 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    height: 40%;
+    height: 98%;
     width: 90%;
-    margin: 2%;
+    margin: 1% 0;
 }
 
-.track-sub-details {
-    flex: 1;
+.track-details .track-sub-details {
+    flex: 0.5;
     display: flex;
-    align-items: center;
     font-size: 70%;
+    height: 20%;
     width: 100%;
 }
 
-.track-name {
+.track-sub-details .track-name {
     flex: 1;
     font-weight: bold;
+    height: 50%;
+    width: 100%;
 }
 
-.artist-name {
+.track-sub-details .artist-name {
     flex: 1;
+    height: 50%;
+    width: 100%;
 }

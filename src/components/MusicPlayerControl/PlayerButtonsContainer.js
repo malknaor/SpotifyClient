@@ -16,9 +16,9 @@ const PLAY_PAUSE_BUTTONS_CLASSNAME = 'music-player__button--icon play-pause-btns
 
 class PlayerButtonsContainer extends React.Component {
     onPlayPauseOnClick = () => {
-        const { play, pause, deviceId } = this.props.player;
+        const { isPlay, deviceId } = this.props.player;
 
-        if (!play && pause) {
+        if (!isPlay) {
             this.props.play(deviceId);
         } else {
             this.props.pause(deviceId);
@@ -26,11 +26,11 @@ class PlayerButtonsContainer extends React.Component {
     }
 
     renderPlayPauseButton = () => {
-        const { play, pause, deviceId } = this.props.player;
+        const { isPlay } = this.props.player;
 
-        if (!play && pause) {
+        if (!isPlay) {
             return (
-                <PlayerButton cssClassName={PLAY_PAUSE_BUTTONS_CLASSNAME} src={playButtonsImage} alt="prev" onClick={this.onPlayPauseOnClick} />
+                <PlayerButton cssClassName={PLAY_PAUSE_BUTTONS_CLASSNAME} src={playButtonsImage} alt="play" onClick={this.onPlayPauseOnClick} />
             );
         } else {
             return (

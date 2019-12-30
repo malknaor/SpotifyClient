@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { limitTitle } from '../../utils/jsUtils';
 import playCardIcon from '../../assets/images/play.svg';
 import './MusicListDisplayCard.css';
 
@@ -25,10 +26,10 @@ const MusicListDisplayCard = props => {
                 }}></img>
             </div>
             <div className="item-name-link">
-                <p className="track-name">{name}</p>
+                <p className="track-name">{limitTitle(name)}</p>
             </div>
             <div className="item-name-link">
-                <p className="artist-name">{artistName}</p>
+                <p className="artist-name">{limitTitle(artistName)}</p>
             </div>
         </div>
     );

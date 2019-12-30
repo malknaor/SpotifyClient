@@ -59,12 +59,12 @@
     flex: 0.1;
     display: flex;
     flex-direction: column;
-    font-size: 70%;
+    font-size: 65%;
     color: white;
     text-decoration: none;
     height: 20%;
     width: 100%;
-    margin: 5% 0;
+    margin: 3% 0;
 }
 
 .track-name {
@@ -75,6 +75,5 @@
 
 .artist-name {
     flex: 1;
-    padding-top: 2%;
     text-align: left;
 }
