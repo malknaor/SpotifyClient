@@ -24,24 +24,24 @@ class ProgressBar extends React.Component {
         });
 
         if (this.props.onChange) {
-            this.props.onChange(e.currentTarget.value);
+            this.props.onChange(parseInt(e.currentTarget.value));
         }
     }
 
     render() {
-        const { currentValue, defaultValue } = this.props;
+        const { currentValue, minVal, maxVal } = this.props;
         
         return (
             <div className="progress-container">
                 <input
                     className="progress-slider"
                     type="range"
-                    min={this.props.minVal || 0}
-                    max={this.props.maxVal || 100}
+                    min={minVal || 0}
+                    max={maxVal || 100}
                     step="1"
-                    value={currentValue || 0}
+                    value={currentValue}
                     onChange={this.onChange}
-                    style={{ backgroundImage: `${this.state.gardient || this.calcGradient(currentValue)}` }}
+                    style={{ backgroundImage: `${this.calcGradient(currentValue)}` }}
                 >
                 </input>
             </div>

@@ -8,7 +8,10 @@ import {
     PLAYER_NEXT_SONG,
     PLAYER_SHUFFLE,
     SET_PLAYER_VOLUME,
-    MUTE_PLAYER_VOLUME
+    MUTE_PLAYER_VOLUME,
+    PLAYER_SEEK,
+    INC_TRACK_CURRENT_DURATION,
+    RESET_CURRENT_DURATION
 } from '../../constants/ActionTypes';
 import {
     REPEAT,
@@ -17,10 +20,10 @@ import {
     PLAY_SONG,
     NEXT_SONG,
     SHUFFLE,
-    SET_VOLUME
+    SET_VOLUME,
+    SEEK
 } from '../../constants/Routes';
 import requestBody from './requestBody';
-import spotifyPlayer from '../../api/spotifyPlayer';
 import spotify from '../../api/spotify';
 
 /****** Player Configuration ******/
@@ -64,13 +67,14 @@ export const mutePlayerVolume = (deviceId, volumePercent) => dispatch => {
     }
 };
 
-/****** Player Functionality ******/
-export const repeatSongs = deviceId => async dispatch => {
+/****** Player Buttons Functionality ******/
+export const repeatSongs = (device_id, state) => async dispatch => {
     try {
         await spotify.put(REPEAT, {}, {
             headers: requestBody.headers,
             params: {
-                "device_id": deviceId
+                device_id,
+                state
             }
         });
 
@@ -80,12 +84,12 @@ export const repeatSongs = deviceId => async dispatch => {
     }
 };
 
-export const prevSong = deviceId => async dispatch => {
+export const prevSong = device_id => async dispatch => {
     try {
         await spotify.post(PREV_SONG, {}, {
             headers: requestBody.headers,
             params: {
-                "device_id": deviceId
+                device_id
             }
         });
 
@@ -95,12 +99,12 @@ export const prevSong = deviceId => async dispatch => {
     }
 };
 
-export const pauseSong = deviceId => async dispatch => {
+export const pauseSong = device_id => async dispatch => {
     try {
-        await spotifyPlayer.put(PAUSE_SONG, {}, {
+        await spotify.put(PAUSE_SONG, {}, {
             headers: requestBody.headers,
             params: {
-                "device_id": deviceId
+                device_id
             }
         });
 
@@ -110,7 +114,7 @@ export const pauseSong = deviceId => async dispatch => {
     }
 };
 
-export const playSong = (deviceId, context_uri = null, uris = null) => async dispatch => {
+export const playSong = (device_id, context_uri = null, uris = null, intervalId) => async dispatch => {
     try {
         let requestData = {};
 
@@ -127,35 +131,75 @@ export const playSong = (deviceId, context_uri = null, uris = null) => async dis
                 "Content-Type": "application/json"
             },
             params: {
-                "device_id": deviceId
+                device_id
             }
         });
 
-        dispatch({ type: PLAYER_PLAY });
+        dispatch({ type: PLAYER_PLAY, payload: intervalId });
     } catch (error) {
         console.log("TCL: playSong -> error", error);
     }
 };
 
-export const nextSong = deviceId => async dispatch => {
+export const nextSong = device_id => async dispatch => {
     try {
-        await spotifyPlayer.post(`${NEXT_SONG}?device_id=${deviceId}`, {}, {
-            headers: requestBody.headers
+        await spotify.post(NEXT_SONG, {}, {
+            headers: requestBody.headers,
+            params: {
+                device_id
+            }
         });
-    
+
         dispatch({ type: PLAYER_NEXT_SONG });
     } catch (error) {
         console.log("TCL: nextSong -> error", error);
     }
 };
 
-export const shuffleSongs = deviceId => async dispatch => {
+export const shuffleSongs = (device_id, state) => async dispatch => {
     try {
-        await spotifyPlayer.put(`${SHUFFLE}?device_id=${deviceId}`, {}, {
-            headers: requestBody.headers
+        await spotify.put(SHUFFLE, {}, {
+            headers: requestBody.headers,
+            params: {
+                device_id,
+                state
+            }
         });
-    
+
         dispatch({ type: PLAYER_SHUFFLE });
+    } catch (error) {
+        console.log("TCL: shuffleSong -> error", error);
+    }
+};
+
+/****** Player Seek Functionality ******/
+export const trackSeek = (device_id, position_ms) => dispatch => {
+    try {
+        spotify.put(SEEK, {}, {
+            headers: requestBody.headers,
+            params: {
+                device_id,
+                position_ms: position_ms * 1000
+            }
+        });
+
+        dispatch({ type: PLAYER_SEEK, payload: position_ms });
+    } catch (error) {
+        console.log("TCL: shuffleSong -> error", error);
+    }
+};
+
+export const incTrackCurrentDuration = () => dispatch => {
+    try {
+        dispatch({ type: INC_TRACK_CURRENT_DURATION });
+    } catch (error) {
+        console.log("TCL: shuffleSong -> error", error);
+    }
+};
+
+export const resetCurrentDuration = () => dispatch => {
+    try {
+        dispatch({ type: RESET_CURRENT_DURATION });
     } catch (error) {
         console.log("TCL: shuffleSong -> error", error);
     }

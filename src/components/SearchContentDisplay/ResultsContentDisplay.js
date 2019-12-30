@@ -1,12 +1,14 @@
 import React from "react";
+import { connect } from 'react-redux';
 
+import { incTrackCurrentDuration } from '../actions/PlayerActions';
 import MusicList from "../MusicList/MusicList";
 import MusicListDisplayCard from "../MusicList/MusicListDisplayCard";
 import TracksList from "../TrakcsList/TracksList";
 import './ResultsContentDisplay.css';
 
 const ResultsContentDisplay = props => {
-    const { deviceId, onItemClick } = props;
+    const { deviceId, intervalId, incTrackCurrentDuration, onItemClick } = props;
     const { albums, tracks } = props.content;
 
     if (albums.items.length > 0 && tracks.items.length > 0) {
@@ -23,6 +25,8 @@ const ResultsContentDisplay = props => {
                                 artistName={albums.items[0].artists[0].name}
                                 onItemClick={onItemClick}
                                 deviceId={deviceId}
+                                intervalId={intervalId}
+                                incTrackCurrentDuration={incTrackCurrentDuration}
                             />
                         </MusicList>
                     </div>
@@ -48,6 +52,8 @@ const ResultsContentDisplay = props => {
                                         artistName={current.artists[0].name}
                                         onItemClick={onItemClick}
                                         deviceId={deviceId}
+                                        intervalId={intervalId}
+                                        incTrackCurrentDuration={incTrackCurrentDuration}
                                     />
                                 </li>
                             );
@@ -66,6 +72,8 @@ const ResultsContentDisplay = props => {
                                         artistName={current.artists[0].name}
                                         onItemClick={onItemClick}
                                         deviceId={deviceId}
+                                        intervalId={intervalId}
+                                        incTrackCurrentDuration={incTrackCurrentDuration} 
                                     />
                                 </li>
                             );
@@ -83,4 +91,8 @@ const ResultsContentDisplay = props => {
     }
 };
 
-export default ResultsContentDisplay;
+const mapStateToProps = state => {
+    return { intervalId: state.player.intervalId }
+};
+
+export default connect(mapStateToProps, { incTrackCurrentDuration })(ResultsContentDisplay);

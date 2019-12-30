@@ -2,33 +2,67 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
-import { convertSongDuraionHMS } from '../../utils/jsUtils';
+import TrackDurationTime from './TrackDurationTimer';
+import { trackSeek, incTrackCurrentDuration } from '../actions';
+import { debounce, convertSongDuraionHMS } from '../../utils/jsUtils';
 import './AudioDurationProgressBar.css';
 
 
-const AudioDurationProgressBar = props => {
-    const { currentTrackData, isPlay } = props.player;
+class AudioDurationProgressBar extends React.Component {
+    _intervalId;
 
-    return (
-        <div className="audio-progress-container">
-            <div className="song-duration">
-                <p>{props.currentDurationMS ? props.currentDurationMS : '0:00'}</p>
-            </div>
+    onTrackSeek = newSeekValue => {
+        const { deviceId } = this.props.player;
+        const { trackSeek } = this.props;
+
+        trackSeek(deviceId, newSeekValue);
+    }
+
+    onSeek = debounce(this.onTrackSeek, 50);
+
+    renderTrackProgress = () => {
+        const { currentTrackData, currentDurationMS } = this.props.player;
+
+        let totalDuration;
+
+        if (currentTrackData) {
+            totalDuration = Math.floor(currentTrackData.duration_ms / 1000);
+        }
+        
+        return (
             <ProgressBar
-                onChange={() => console.log('current duration changed')}
-                currentValue={props.currentDuration}
+                onChange={this.onSeek}
+                currentValue={currentDurationMS}
                 minVal={0}
-                maxVal={props.songDuration}
+                maxVal={totalDuration}
             />
-            <div className="song-duration">
-                <p>{props.songDurationMS ? props.songDurationMS : '0:00'}</p>
+        );
+    }
+
+    render() {
+        const { currentTrackData, currentDurationMS } = this.props.player;
+        let totalDuration, totalDurationMS, currentDuration = convertSongDuraionHMS(currentDurationMS * 1000);
+
+        if (currentTrackData) {
+            totalDurationMS = parseInt(currentTrackData.duration_ms);
+            totalDuration = convertSongDuraionHMS(totalDurationMS);
+        }
+
+        return (
+            <div className="audio-progress-container">
+                <TrackDurationTime currentValue={currentDuration} />
+                {this.renderTrackProgress()}
+                <TrackDurationTime currentValue={totalDuration || '0:00'} />
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 const mapStateToProps = state => {
     return { player: state.player };
 };
 
-export default connect(mapStateToProps)(AudioDurationProgressBar);
+export default connect(mapStateToProps, {
+    trackSeek,
+    incTrackCurrentDuration
+})(AudioDurationProgressBar);

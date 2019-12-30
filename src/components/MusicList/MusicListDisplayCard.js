@@ -5,7 +5,7 @@ import playCardIcon from '../../assets/images/play.svg';
 import './MusicListDisplayCard.css';
 
 const MusicListDisplayCard = props => {
-    const { isArtist = false, itemData, coverSrc, onItemClick, deviceId, name, artistName } = props;
+    const { isArtist = false, itemData, coverSrc, onItemClick, deviceId, name, artistName, intervalId } = props;
     
     return (
         <div className="display-card">
@@ -15,13 +15,15 @@ const MusicListDisplayCard = props => {
                     className={`album-middle${isArtist? ' artist' : ''}`} 
                     src={playCardIcon} 
                     alt="album middle" 
-                    onClick={() => {
+                    onClick={() => { 
+                        let newIntervalId = intervalId || setInterval(props.incTrackCurrentDuration, 1000);
+
                         if (isArtist) {
-                            onItemClick(deviceId, itemData.uri);
+                            onItemClick(deviceId, itemData.uri, null, newIntervalId);
                         } else {
                             let trackUri = itemData.uri || itemData.track.uri;
 
-                            onItemClick(deviceId, null, [trackUri]);
+                            onItemClick(deviceId, null, [trackUri], newIntervalId);
                         }
                 }}></img>
             </div>

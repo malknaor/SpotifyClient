@@ -30,47 +30,4 @@
     background: white; 
 }
 
-/* .progress-wrapper {
-    flex: 1;
-    display: flex;
-    align-self: center;
-    visibility: visible;
-    width: 100%;
-    background-color: transparent;
-    border-radius: 5px;
-    overflow-x: hidden;
-}
-
-.progress-container:hover .progress-wrapper {
-    visibility: visible;
-}
-
-.progress-bar {
-    flex: 1;
-    align-self: center;
-    border: 2px solid #b3b3b3;
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-}
-
-.progress-container:hover .progress-bar {
-    border: 2px solid #1DB954;
-}
-
-.draggable-point {
-    position: relative;
-    align-self: center;
-    visibility: hidden;
-    background-color: white;   
-    border: 2px solid white;
-    border-radius: 50%;
-    padding: 1%;
-    width: 1%;
-}
-
-.progress-container:hover .draggable-point {
-    visibility: visible;
-} */
-
 

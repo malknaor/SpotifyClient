@@ -1,0 +1,14 @@
+.track-duration {
+    flex: 0.1;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 20%;
+}
+
+.track-duration .track-duration-label {
+    flex: 1;
+    align-self: center;
+    text-align: center;
+    font-size: 50%;
+}

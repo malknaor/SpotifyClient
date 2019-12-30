@@ -8,7 +8,7 @@ import {
     fetchRecentlyPlayed,
     fetchUserTopX
 } from '../../actions';
-import { playSong } from '../../actions/PlayerActions';
+import { playSong, incTrackCurrentDuration } from '../../actions/PlayerActions';
 import MusicListDisplayCard from '../../MusicList/MusicListDisplayCard';
 import './HomePage.css';
 
@@ -32,7 +32,9 @@ class HomePage extends React.Component {
                                     name={current.track.name} 
                                     artistName={current.track.artists[0].name}
                                     onItemClick={this.props.play} 
-                                    deviceId={this.props.deviceId} 
+                                    deviceId={this.props.deviceId}
+                                    intervalId={this.props.intervalId}
+                                    incTrackCurrentDuration={this.props.incTrackCurrentDuration}  
                                 />
                             </li>
                         );
@@ -57,7 +59,9 @@ class HomePage extends React.Component {
                                     name={current.name} 
                                     artistName={current.artists[0].name} 
                                     onItemClick={this.props.play} 
-                                    deviceId={this.props.deviceId} 
+                                    deviceId={this.props.deviceId}
+                                    intervalId={this.props.intervalId}
+                                    incTrackCurrentDuration={this.props.incTrackCurrentDuration}  
                                 />
                             </li>
                         );
@@ -84,6 +88,8 @@ class HomePage extends React.Component {
                                     artistName="artist" 
                                     onItemClick={this.props.play} 
                                     deviceId={this.props.deviceId} 
+                                    intervalId={this.props.intervalId}
+                                    incTrackCurrentDuration={this.props.incTrackCurrentDuration} 
                                 />
                             </li>
                         );
@@ -114,12 +120,14 @@ const mapStateToProps = state => {
         recentlyPlayed: state.recentlyPlayed.recentlyPlayed,
         topTracks: state.userTopX.topTracks,
         topArtists: state.userTopX.topArtists,
-        deviceId: state.player.deviceId
+        deviceId: state.player.deviceId,
+        intervalId: state.player.intervalId
     };
 };
 
 export default connect(mapStateToProps, {
     fetchRecentlyPlayed,
     fetchUserTopX,
-    play: playSong
+    play: playSong,
+    incTrackCurrentDuration
 })(HomePage);

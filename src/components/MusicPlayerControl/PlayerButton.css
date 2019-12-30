@@ -17,6 +17,11 @@
     height: 35%;
 }
 
+.selected {
+    width: 40%;
+    height: 40%;
+}
+
 .play-pause-btns {
     flex: 1;
     width: 70%;

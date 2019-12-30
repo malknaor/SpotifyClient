@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import SpotifyWebPlayerScript from '../SpotifyWebPlayer/SpotifyWebPlayerScript';
 import PlayerButtonsContainer from './PlayerButtonsContainer';
@@ -9,11 +8,8 @@ import VolumeControls from './VolumeControls';
 import './MusicPlayerControls.css';
 
 const MusicPlayerControls = props => {
-    const { player } = props;
-
     return (
         <div className="music-player">
-            <SpotifyWebPlayerScript></SpotifyWebPlayerScript>
             <div className="music-player__currently-played">
                 <CurrentlyPlayingDisplay />
             </div>
@@ -28,12 +24,9 @@ const MusicPlayerControls = props => {
             <div className="music-player__volume">
                 <VolumeControls />
             </div>
+            <SpotifyWebPlayerScript></SpotifyWebPlayerScript>
         </div>
     );
 };
 
-const mapStateToProps = state => {
-    return { player: state.player }
-};
-
-export default connect(mapStateToProps)(MusicPlayerControls);
+export default MusicPlayerControls;

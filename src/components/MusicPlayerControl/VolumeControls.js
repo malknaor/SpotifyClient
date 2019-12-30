@@ -32,12 +32,12 @@ class VolumeControls extends React.Component {
             } else {
                 setPlayerVolume(deviceId, volumeBeforeMute);
             }
-        } else if (volumePercent != newPercentage) {
+        } else if (volumePercent !== newPercentage) {
             setPlayerVolume(deviceId, newPercentage);
         }
     }
 
-    onVolumeChange = debounce(this.setPlayerNewVolume, 1500);
+    onVolumeChange = debounce(this.setPlayerNewVolume, 50);
 
     componentDidUpdate() {
         this.render();
@@ -50,13 +50,13 @@ class VolumeControls extends React.Component {
             <div className="volume_controls_container">
                 <img
                     className="volume_icon"
-                    src={this.getVolumeIcon(eval(volumePercent, 10))}
+                    src={this.getVolumeIcon(volumePercent)}
                     alt="volume icon"
                     onClick={() => this.setPlayerNewVolume(0)}
                 >
                 </img>
                 <ProgressBar
-                    onChange={this.setPlayerNewVolume}
+                    onChange={this.onVolumeChange}
                     currentValue={volumePercent}
                     minVal={0}
                     maxVal={100}
