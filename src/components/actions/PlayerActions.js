@@ -117,11 +117,14 @@ export const pauseSong = device_id => async dispatch => {
 export const playSong = (device_id, context_uri = null, uris = null, intervalId) => async dispatch => {
     try {
         let requestData = {};
+        let playType;
 
         if (context_uri && !uris) {
             requestData = { "context_uri": context_uri };
+            playType = 'context';
         } else if (!context_uri && uris) {
             requestData = { "uris": uris };
+            playType = 'uris';
         }
 
         await spotify.put(PLAY_SONG,
@@ -135,7 +138,7 @@ export const playSong = (device_id, context_uri = null, uris = null, intervalId)
             }
         });
 
-        dispatch({ type: PLAYER_PLAY, payload: intervalId });
+        dispatch({ type: PLAYER_PLAY, payload: { intervalId, playType } });
     } catch (error) {
         console.log("TCL: playSong -> error", error);
     }
