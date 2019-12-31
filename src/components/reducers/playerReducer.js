@@ -33,7 +33,11 @@ const playerReducer = (state = initialPlayerState, action) => {
             return { ...state, deviceId: action.payload };
         }
         case SET_CURRENT_TRACK: {
-            return { ...state, currentTrackData: action.payload };
+            if (state.currentTrackData && (action.payload.id !== state.currentTrackData.id)) {
+                return { ...state, currentDurationMS: 0, currentTrackData: action.payload };
+            } else {
+                return { ...state, currentTrackData: action.payload };
+            }
         }
         case PLAYER_REPEAT: {
             let repeatType;
@@ -49,7 +53,7 @@ const playerReducer = (state = initialPlayerState, action) => {
             return { ...state, repeatType };
         }
         case PLAYER_PAUSE: {
-            if(state.intervalId) clearInterval(state.intervalId);
+            if (state.intervalId) clearInterval(state.intervalId);
 
             return state.isPlay ? { ...state, isPlay: !state.isPlay, intervalId: null } : { ...state };
         }
