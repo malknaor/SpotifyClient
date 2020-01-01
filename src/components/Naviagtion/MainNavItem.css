@@ -1,0 +1,36 @@
+.main-nav__link {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    color: white;
+    transition: color 0.3s;
+    text-decoration: none;
+    height: 98%;
+    width: 98%;
+    margin: 1%;
+}
+
+.main-nav__link:link,
+.main-nav__link:visited {
+    color: rgb(119, 118, 118);
+}
+
+
+.main-nav__link:hover,
+.main-nav__link:active {
+    color: white;
+}
+
+.main-nav__link .main-nav__icon {
+    flex: 0.2;
+    height: 60%;
+    width: 20%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.main-nav__link .main-nav__label {
+    flex: 0.8;
+    height: 100%;
+    width: 100%;
+}

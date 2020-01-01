@@ -11,10 +11,7 @@ import UserLibraryPage from '../Pages/UserLibraryPage/UserLibraryPage';
 import UserPage from '../Pages/UserAccountPage/UserAccountPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import MusicPlayerControls from '../MusicPlayerControl/MusicPlayerControls';
-import {
-    ACCESS_TOKEN,
-    REFRESH_TOKEN
-} from '../../constants/StorageKeys';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants/StorageKeys';
 import './App.css';
 
 class App extends React.Component {
@@ -43,10 +40,13 @@ class App extends React.Component {
             return (
                 <Router>
                     <div className="app-upper-container">
-                        <MainNavigation user={this.props.user} />
+                        <div className="app-navigation">
+                            <MainNavigation user={this.props.user} />
+                        </div>
                         <div className="app-page">
                             <Switch>
                                 <Route path="/" exact component={HomePage}></Route>
+                                <Route path="/login" exact component={LoginPage}></Route>
                                 <Route path="/search" component={SearchPage}></Route>
                                 <Route path="/mylibrary" component={UserLibraryPage}></Route>
                                 <Route path="/user" component={UserPage}></Route>
